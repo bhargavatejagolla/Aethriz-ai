@@ -136,10 +136,15 @@ export default function HomePage() {
 
   return (
     <div className="relative min-h-screen bio-grid-canvas flex flex-col overflow-x-hidden">
-      {/* 60 FPS Bio-Neural Canvas */}
+      {/* 60 FPS Bio-Neural, DNA Helix & Cardiac Hemodynamic Canvas */}
       <BioNeuralCanvas />
 
-      {/* React Bits Interactive Fluid Dynamics Splash Cursor */}
+      {/* Atmospheric Ambient Lighting Blobs */}
+      <div className="absolute top-20 left-1/4 w-[500px] h-[500px] bg-red-500/[0.045] rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 right-10 w-[600px] h-[600px] bg-rose-500/[0.04] rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-20 left-10 w-[550px] h-[550px] bg-red-600/[0.035] rounded-full blur-3xl pointer-events-none" />
+
+      {/* Interactive Fluid Dynamics Splash Cursor */}
       <SplashCursor
         colors={['#DC2626', '#E11D48', '#FB7185', '#F43F5E']}
         rainbow={false}
