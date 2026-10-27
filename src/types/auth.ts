@@ -19,4 +19,6 @@ export interface AuthContextType {
   loginWithSupabase?: (email: string, pass: string) => Promise<{ success: boolean; error?: string }>;
   logout: () => void;
   getRoleRedirectPath: (role: UserRole) => string;
+  detectRoleFromCredentials: (email: string) => UserRole;
+  registerUser: (profile: UserProfile) => void;
 }

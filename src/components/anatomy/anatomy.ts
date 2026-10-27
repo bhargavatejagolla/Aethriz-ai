@@ -191,37 +191,37 @@ export const CLINICAL_DEFAULT_VISIBLE: SystemId[] = [
 export const CLINICAL_PRESETS = [
   {
     id: 'organs',
-    label: '🫀 Vital Organs',
+    label: 'Vital Organs',
     description: 'Heart, Lungs, Brain, Liver, and Kidneys',
     systems: ['cardiac', 'respiratory', 'digestive', 'nervous', 'urinary'] as SystemId[]
   },
   {
     id: 'cardiopulmonary',
-    label: '🫁 Cardio-Pulmonary',
+    label: 'Cardio-Pulmonary',
     description: 'Heart, Coronary Arteries, Aorta, and Bronchial Tree',
     systems: ['cardiac', 'arterial', 'venous', 'respiratory'] as SystemId[]
   },
   {
     id: 'neuro',
-    label: '🧠 Neuro-Anatomy',
+    label: 'Neuro-Anatomy',
     description: 'Cerebral Cortex, Spine, Cranial Nerves, and Sensory',
     systems: ['nervous', 'sensory', 'skeletal'] as SystemId[]
   },
   {
     id: 'skeletal',
-    label: '🦴 Skeletal Matrix',
+    label: 'Skeletal Matrix',
     description: '206 Articulated Bones of Skull, Spine, and Limbs',
     systems: ['skeletal'] as SystemId[]
   },
   {
     id: 'vascular',
-    label: '🩸 Circulatory Tree',
+    label: 'Circulatory Tree',
     description: 'Aortic Arch, Coronaries, Vena Cava, and Hepatic Portal',
     systems: ['cardiac', 'arterial', 'venous'] as SystemId[]
   },
   {
     id: 'clinical_all',
-    label: '🩺 Full Medical Survey',
+    label: 'Full Medical Survey',
     description: 'Internal Organs, Nerves, Vessels, and Skeleton',
     systems: [
       'cardiac',

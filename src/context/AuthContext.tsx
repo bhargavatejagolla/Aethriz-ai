@@ -51,6 +51,62 @@ export function getRoleRedirectPath(role: UserRole): string {
   }
 }
 
+export function detectRoleFromCredentials(email: string): UserRole {
+  const clean = (email || "").trim().toLowerCase();
+
+  // 1. Check if user is in registered profiles storage
+  try {
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("aethriz_registered_users");
+      if (stored) {
+        const users = JSON.parse(stored);
+        const match = users.find((u: any) => (u.email || "").toLowerCase() === clean);
+        if (match && match.role) return match.role as UserRole;
+      }
+    }
+  } catch {
+    // storage error
+  }
+
+  // 2. Intelligent clinical domain & credential pattern matching
+  if (
+    clean.includes("doctor") ||
+    clean.includes("dr.") ||
+    clean.includes("sarah.lin") ||
+    clean.includes("stanford.edu") ||
+    clean.includes("aiims.edu") ||
+    clean.includes("oxford.ac.uk") ||
+    clean.includes("apollo") ||
+    clean.includes("cardio") ||
+    clean.includes("physician")
+  ) {
+    return "doctor";
+  }
+
+  if (
+    clean.includes("nurse") ||
+    clean.includes("ananya") ||
+    clean.includes("triage") ||
+    clean.includes("icu") ||
+    clean.includes("staff")
+  ) {
+    return "nurse";
+  }
+
+  if (
+    clean.includes("admin") ||
+    clean.includes("secops") ||
+    clean.includes("governance") ||
+    clean.includes("compliance") ||
+    clean.includes("root@")
+  ) {
+    return "admin";
+  }
+
+  // 3. Default to patient member
+  return "patient";
+}
+
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
@@ -143,6 +199,22 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
+  const registerUser = (profile: UserProfile) => {
+    try {
+      if (typeof window !== "undefined") {
+        const stored = localStorage.getItem("aethriz_registered_users");
+        const list = stored ? JSON.parse(stored) : [];
+        const filtered = list.filter((u: any) => u.email.toLowerCase() !== profile.email.toLowerCase());
+        filtered.push(profile);
+        localStorage.setItem("aethriz_registered_users", JSON.stringify(filtered));
+        localStorage.setItem("aethriz_auth_user", JSON.stringify(profile));
+      }
+    } catch {
+      // storage unavailable
+    }
+    setUser(profile);
+  };
+
   const logout = async () => {
     if (supabase) {
       await supabase.auth.signOut();
@@ -166,6 +238,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         loginWithSupabase,
         logout,
         getRoleRedirectPath,
+        detectRoleFromCredentials,
+        registerUser,
       }}
     >
       {children}

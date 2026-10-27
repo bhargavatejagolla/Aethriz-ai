@@ -269,7 +269,7 @@ export default function HomePage() {
               <div className="flex items-center gap-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-red-600 animate-ping" />
                 <span className="font-bold text-red-600 uppercase tracking-wider text-xs">
-                  Bio-Algorithmic Vector Engine • Laboratory Bench
+                  Bio-Computational Telemetry • Signal Processing Bench
                 </span>
               </div>
               <div className="flex flex-wrap items-center gap-2">
@@ -319,7 +319,7 @@ export default function HomePage() {
               {/* StrokeText Dynamic Outline Draw with Liquid Wipe Fill */}
               <div className="w-full h-32 sm:h-40 relative rounded-2xl bg-gradient-to-br from-slate-900 to-slate-950 p-4 border border-slate-800 flex flex-col justify-center items-center text-center overflow-hidden">
                 <span className="text-[10px] font-mono font-bold text-red-400 uppercase tracking-widest mb-1">
-                  React Bits StrokeText Draw Engine
+                  Digital Biomarker Synthesis
                 </span>
                 <StrokeText
                   key={`stroke-${selectedWord}`}
@@ -338,7 +338,7 @@ export default function HomePage() {
                   className="w-full"
                 />
                 <span className="text-[10px] font-mono text-slate-400 mt-1">
-                  GSAP SVG Glyphs • Liquid Wipe Fill
+                  Real-Time Algorithmic Waveform Modeling
                 </span>
               </div>
             </div>
@@ -346,10 +346,10 @@ export default function HomePage() {
             <div className="flex items-center justify-between text-[11px] font-mono text-slate-400 pt-3 border-t border-slate-100 mt-3">
               <span className="flex items-center gap-1.5">
                 <Fingerprint className="w-3.5 h-3.5 text-red-500" />
-                <span>Hover • Drag letters off baseline • Liquid draw on mount</span>
+                <span>Interactive Biophysical Glyphs • Multi-Modal Signal Decomposition</span>
               </span>
               <span className="text-emerald-600 font-semibold">
-                Vector Physics Engine: 60 FPS Active
+                Clinical Compute Engine: 60 Hz Telemetry Active
               </span>
             </div>
           </div>

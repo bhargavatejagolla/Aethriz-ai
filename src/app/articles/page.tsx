@@ -25,7 +25,8 @@ import {
   Bookmark,
   Sparkles,
   ArrowRight,
-  UserCheck
+  UserCheck,
+  X
 } from "lucide-react";
 
 interface Article {
@@ -455,8 +456,9 @@ export default function ArticlesPage() {
               <button
                 onClick={() => setSelectedArticle(null)}
                 className="absolute top-6 right-6 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500 transition-colors"
+                aria-label="Close modal"
               >
-                ✕
+                <X className="w-4 h-4" />
               </button>
 
               <div className="space-y-6">
@@ -523,8 +525,9 @@ export default function ArticlesPage() {
               <button
                 onClick={() => setIsSubmitOpen(false)}
                 className="absolute top-6 right-6 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500 transition-colors"
+                aria-label="Close modal"
               >
-                ✕
+                <X className="w-4 h-4" />
               </button>
 
               {submissionSuccess ? (

@@ -19,7 +19,10 @@ import {
   Info,
   Sparkles,
   CheckCircle2,
-  Cpu
+  Cpu,
+  Brain,
+  Droplets,
+  Stethoscope
 } from 'lucide-react';
 import { 
   SYSTEMS, 
@@ -248,17 +251,25 @@ export default function AnatomyViewer() {
         <div className="flex flex-wrap items-center gap-1.5 p-1.5 bg-gray-950/70 border border-gray-800/80 rounded-2xl backdrop-blur-md max-w-full">
           {CLINICAL_PRESETS.map(preset => {
             const isActive = activePreset === preset.id;
+            const PresetIcon = 
+              preset.id === 'organs' ? Activity :
+              preset.id === 'cardiopulmonary' ? Heart :
+              preset.id === 'neuro' ? Brain :
+              preset.id === 'skeletal' ? Layers :
+              preset.id === 'vascular' ? Droplets : Stethoscope;
+
             return (
               <button
                 key={preset.id}
                 onClick={() => handleApplyPreset(preset.id, preset.systems)}
-                className={`px-3 py-1.5 rounded-xl text-xs font-mono font-bold transition-all whitespace-nowrap cursor-pointer ${
+                className={`px-3 py-1.5 rounded-xl text-xs font-mono font-bold transition-all whitespace-nowrap cursor-pointer flex items-center gap-1.5 ${
                   isActive
                     ? 'bg-red-600 text-white shadow-lg shadow-red-600/30'
                     : 'text-gray-400 hover:text-white hover:bg-gray-800/60'
                 }`}
               >
-                {preset.label}
+                <PresetIcon className={`w-3.5 h-3.5 ${isActive ? 'text-white' : 'text-red-500'}`} />
+                <span>{preset.label}</span>
               </button>
             );
           })}
