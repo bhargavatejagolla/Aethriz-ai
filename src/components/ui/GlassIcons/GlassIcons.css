@@ -5,11 +5,24 @@
   justify-content: center;
   gap: var(--glass-icons-row-gap) var(--glass-icons-gap);
   box-sizing: border-box;
-  max-width: calc(
-    var(--glass-icons-columns) * var(--glass-icons-size) + (var(--glass-icons-columns) - 1) * var(--glass-icons-gap)
+  max-width: min(
+    100%,
+    calc(
+      var(--glass-icons-columns) * var(--glass-icons-size) + (var(--glass-icons-columns) - 1) * var(--glass-icons-gap)
+    )
   );
+  width: 100%;
   margin: 0 auto;
   isolation: isolate;
+  overflow: visible;
+}
+
+@media (max-width: 639px) {
+  .glass-icons {
+    max-width: calc(
+      3 * var(--glass-icons-size) + 2 * var(--glass-icons-gap)
+    );
+  }
 }
 
 .glass-icons-defs {
@@ -131,8 +144,9 @@
   left: 50%;
   z-index: 2;
   color: var(--glass-icons-label);
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   line-height: 1.2;
   white-space: nowrap;
   pointer-events: none;

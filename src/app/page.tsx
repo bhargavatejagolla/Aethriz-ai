@@ -268,7 +268,7 @@ export default function HomePage() {
                   Bio-Algorithmic Vector Engine • Laboratory Bench
                 </span>
               </div>
-              <div className="flex items-center gap-2 overflow-x-auto scrollbar-none">
+              <div className="flex flex-wrap items-center gap-2">
                 {["AETHRIZ", "BIO-AI", "TELEMETRY", "PRECISION"].map((word) => (
                   <button
                     key={word}
@@ -367,11 +367,11 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="py-2 overflow-x-auto scrollbar-none flex justify-center">
+          <div className="pt-8 pb-10 px-2 flex justify-center items-center w-full overflow-visible">
             <GlassIcons
               items={modalityGlassItems}
-              size={76}
-              gap={32}
+              size={66}
+              gap={20}
               columns={6}
               roundness={0.65}
               refraction={0.8}
@@ -382,8 +382,8 @@ export default function HomePage() {
               tint="#ffffff"
               tintOpacity={0.2}
               plate="tilt"
-              tilt={25}
-              spread={0.4}
+              tilt={22}
+              spread={0.35}
               hover="press"
               parallax={1}
               labels="always"

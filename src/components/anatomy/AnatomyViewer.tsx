@@ -245,7 +245,7 @@ export default function AnatomyViewer() {
 
       {/* Preset Action Strip: Important Meshes & Organs */}
       <div className="relative z-20 px-4 sm:px-6 pointer-events-auto">
-        <div className="flex flex-wrap items-center gap-1.5 p-1.5 bg-gray-950/70 border border-gray-800/80 rounded-2xl backdrop-blur-md max-w-full overflow-x-auto">
+        <div className="flex flex-wrap items-center gap-1.5 p-1.5 bg-gray-950/70 border border-gray-800/80 rounded-2xl backdrop-blur-md max-w-full">
           {CLINICAL_PRESETS.map(preset => {
             const isActive = activePreset === preset.id;
             return (
