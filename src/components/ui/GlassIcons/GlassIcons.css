@@ -87,8 +87,16 @@
   overflow: hidden;
   border-radius: var(--glass-icons-radius);
   background: linear-gradient(var(--glass-icons-tint), var(--glass-icons-tint));
-  box-shadow: 0 12px 24px -14px var(--glass-icons-drop);
-  will-change: transform, opacity;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 25px -10px var(--glass-icons-drop), inset 0 1px 1px 0 rgba(255, 255, 255, 0.95);
+  will-change: opacity;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.glass-icon:hover .glass-icon-glass {
+  border-color: rgba(220, 38, 38, 0.35);
+  box-shadow: 0 12px 28px -6px rgba(220, 38, 38, 0.18), inset 0 1px 2px 0 rgba(255, 255, 255, 1);
+  filter: brightness(1.03);
 }
 
 .glass-icon-shade,
@@ -127,8 +135,8 @@
 .glass-icon-glyph {
   display: grid;
   place-items: center;
-  width: 40%;
-  height: 40%;
+  width: 48%;
+  height: 48%;
   color: var(--glass-icons-ink);
   filter: drop-shadow(0 1px 3px var(--glass-icons-glyph-shadow));
 }

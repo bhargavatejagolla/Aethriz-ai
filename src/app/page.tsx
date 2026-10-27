@@ -363,11 +363,11 @@ export default function HomePage() {
               Interactive Clinical Navigation Deck
             </h3>
             <p className="text-xs text-gray-600 font-medium">
-              Hover and tilt each liquid glass module to launch diagnostic engines, 3D anatomical raycasting, and specialist queues.
+              Direct clinical access modules to launch diagnostic engines, 3D anatomical raycasting, and specialist queues.
             </p>
           </div>
 
-          <div className="pt-8 pb-10 px-2 flex justify-center items-center w-full overflow-visible">
+          <div className="pt-6 pb-8 px-2 flex justify-center items-center w-full overflow-visible">
             <GlassIcons
               items={modalityGlassItems}
               size={66}
@@ -380,14 +380,14 @@ export default function HomePage() {
               frost={0.25}
               shine={0.9}
               tint="#ffffff"
-              tintOpacity={0.2}
-              plate="tilt"
-              tilt={22}
-              spread={0.35}
-              hover="press"
-              parallax={1}
+              tintOpacity={0.85}
+              plate="none"
+              tilt={0}
+              spread={0}
+              hover="none"
+              parallax={0}
               labels="always"
-              intro={true}
+              intro={false}
               theme="light"
             />
           </div>
