@@ -18,3 +18,4 @@ export { default as Stepper, Step } from './Stepper';
 export { default as StrokeText } from './StrokeText';
 export { default as TechText } from './TechText';
 export { default as TiltedCard } from './TiltedCard';
+export { default as AethrizLogo } from './AethrizLogo/AethrizLogo';

@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 import { UserRole } from "@/types/auth";
 import { Shield, Stethoscope, HeartPulse, UserCheck, ArrowRight, Activity, ArrowLeft } from "lucide-react";
+import AethrizLogo from "@/components/ui/AethrizLogo/AethrizLogo";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -103,12 +104,12 @@ export default function LoginPage() {
       {/* Card container */}
       <div className="w-full max-w-md glass-panel p-8 rounded-3xl relative z-10 shadow-xl border border-red-100">
         {/* Brand header */}
-        <div className="text-center mb-8">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-red-600 to-rose-600 text-white font-black text-2xl flex items-center justify-center mx-auto shadow-md shadow-red-500/25 mb-3">
-            A
+        <div className="text-center mb-8 flex flex-col items-center">
+          <div className="mb-4">
+            <AethrizLogo size="lg" variant="full" />
           </div>
-          <h1 className="text-2xl font-extrabold text-gray-900 tracking-tight">
-            AETHRIZ Clinical Gateway
+          <h1 className="text-xl font-extrabold text-gray-900 tracking-tight">
+            Clinical Telemetry Gateway
           </h1>
           <p className="text-xs text-gray-600 mt-1 font-medium">
             Single Unified Sign-In with Automatic Role-Based Redirection

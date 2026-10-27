@@ -16,6 +16,7 @@ import ElectricBorder from "@/components/ui/ElectricBorder";
 import StarBorder from "@/components/ui/StarBorder";
 import GlareHover from "@/components/ui/GlareHover";
 import GlassIcons from "@/components/ui/GlassIcons";
+import AethrizLogo from "@/components/ui/AethrizLogo/AethrizLogo";
 import { 
   Heart, 
   ArrowRight, 
@@ -163,20 +164,23 @@ export default function HomePage() {
             
             {/* Left Hero Details */}
             <div className="lg:w-1/2 space-y-6 text-left">
-              {/* Multilingual 24+ Language Badge Bar */}
-              <div className="inline-flex items-center gap-2 bg-white/95 border border-red-200/80 px-3.5 py-1.5 rounded-full shadow-xs">
-                <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
-                <span className="text-[11px] font-mono font-bold text-gray-800">
-                  Multilingual AI Healthcare:
-                </span>
-                <div className="flex items-center gap-1.5 text-[11px] font-bold text-red-700">
-                  {indianScripts.map((s, idx) => (
-                    <React.Fragment key={s.name}>
-                      <span title={s.name}>{s.label}</span>
-                      {idx < indianScripts.length - 1 && <span className="opacity-40">&bull;</span>}
-                    </React.Fragment>
-                  ))}
-                  <span className="text-[10px] text-gray-500 font-mono">(24+ Languages)</span>
+              {/* Official Brand Identity & Multilingual Badge Bar */}
+              <div className="flex flex-wrap items-center gap-3">
+                <AethrizLogo variant="pill" size="xs" />
+                <div className="inline-flex items-center gap-2 bg-white/95 border border-red-200/80 px-3.5 py-1.5 rounded-full shadow-xs">
+                  <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
+                  <span className="text-[11px] font-mono font-bold text-gray-800">
+                    Multilingual AI Healthcare:
+                  </span>
+                  <div className="flex items-center gap-1.5 text-[11px] font-bold text-red-700">
+                    {indianScripts.map((s, idx) => (
+                      <React.Fragment key={s.name}>
+                        <span title={s.name}>{s.label}</span>
+                        {idx < indianScripts.length - 1 && <span className="opacity-40">&bull;</span>}
+                      </React.Fragment>
+                    ))}
+                    <span className="text-[10px] text-gray-500 font-mono">(24+ Languages)</span>
+                  </div>
                 </div>
               </div>
 

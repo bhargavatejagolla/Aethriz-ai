@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
+import AethrizLogo from "@/components/ui/AethrizLogo/AethrizLogo";
 import { 
   Heart, 
   Menu, 
@@ -55,20 +56,8 @@ export default function FloatingNavbar() {
     <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 pt-3 sm:pt-4 pointer-events-none">
       <div className="max-w-7xl mx-auto pointer-events-auto">
         <nav className="glass-floating-nav rounded-2xl sm:rounded-full px-4 sm:px-6 py-2.5 flex items-center justify-between border border-white/80 shadow-lg shadow-red-500/5">
-          {/* Logo & Brand */}
-          <Link href="/" className="flex items-center gap-2.5 group flex-shrink-0">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-red-600 to-rose-600 flex items-center justify-center text-white shadow-md shadow-red-500/25 group-hover:scale-105 transition-transform">
-              <Heart className="w-5 h-5 fill-white" />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-lg font-black tracking-tight text-gray-900 leading-none">
-                AETHRIZ
-              </span>
-              <span className="text-[9px] font-bold tracking-widest uppercase text-red-600 font-mono">
-                BIO-HEALTH AI
-              </span>
-            </div>
-          </Link>
+          {/* Official AETHRIZ Logo & Brand (Emblem + ∧ ≡ T H R I Z Wordmark) */}
+          <AethrizLogo href="/" size="sm" variant="full" theme="light" />
 
           {/* Desktop Navigation Links */}
           <div className="hidden lg:flex items-center gap-1 xl:gap-2 2xl:gap-3 text-[11px] xl:text-xs font-semibold text-gray-700">

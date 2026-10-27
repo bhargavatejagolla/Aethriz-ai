@@ -5,6 +5,16 @@ import { AuthProvider } from "@/context/AuthContext";
 export const metadata: Metadata = {
   title: "AETHRIZ — The Zenith of Bio-Algorithmic Health",
   description: "Next-generation healthcare intelligence platform by Aethriz AI Healthcare And Advanced Research Private Limited. Real-time multi-modal diagnostics, 3D anatomical exploration, and clinical telehealth.",
+  icons: {
+    icon: [
+      { url: "/brand/aethriz-emblem.svg", type: "image/svg+xml" },
+      { url: "/brand/aethriz-emblem.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    apple: [
+      { url: "/brand/aethriz-emblem.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
 };
 
 export default function RootLayout({

@@ -2,7 +2,8 @@
 
 import React from "react";
 import Link from "next/link";
-import { Heart, Mail, Phone, MapPin, ShieldCheck, FileCheck, ArrowUpRight } from "lucide-react";
+import { Mail, Phone, MapPin, ShieldCheck, FileCheck, ArrowUpRight } from "lucide-react";
+import AethrizLogo from "@/components/ui/AethrizLogo/AethrizLogo";
 
 export default function Footer() {
   return (
@@ -11,14 +12,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-gray-800">
           {/* Column 1 & 2: Corporate Identity & Address */}
           <div className="lg:col-span-2 space-y-4">
-            <Link href="/" className="flex items-center gap-2.5 group">
-              <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-red-600 to-rose-600 flex items-center justify-center text-white shadow-md shadow-red-500/20">
-                <Heart className="w-4 h-4 fill-white" />
-              </div>
-              <span className="text-lg font-black tracking-tight text-white">
-                AETHRIZ
-              </span>
-            </Link>
+            {/* Official Corporate Logo */}
+            <AethrizLogo href="/" size="sm" variant="full" theme="dark" />
 
             <p className="text-gray-400 text-xs leading-relaxed max-w-sm">
               The Zenith of Bio-Algorithmic Health. Clinical AI decision-support systems, 
