@@ -70,14 +70,40 @@ export default function BioNeuralCanvas() {
       mouse.active = false;
     };
 
+    // Mobile touch interaction
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        const touch = e.touches[0];
+        mouse.targetX = touch.clientX;
+        mouse.targetY = touch.clientY;
+        if (!mouse.active) {
+          mouse.x = touch.clientX;
+          mouse.y = touch.clientY;
+        }
+        mouse.active = true;
+        mouse.lastMoveTime = performance.now();
+      }
+    };
+
+    const handleTouchEnd = () => {
+      // Fade out slowly on touch release
+      setTimeout(() => {
+        mouse.active = false;
+      }, 1200);
+    };
+
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("mouseleave", handleMouseLeave);
+    window.addEventListener("touchstart", handleTouchMove, { passive: true });
+    window.addEventListener("touchmove", handleTouchMove, { passive: true });
+    window.addEventListener("touchend", handleTouchEnd, { passive: true });
 
-    // Initialize 52 Synaptic Neural Nodes
-    const nodeCount = 52;
+    // Adaptive Node Count for Mobile Efficiency
+    const isMobile = w < 768;
+    const nodeCount = isMobile ? 32 : 52;
     const nodes: Node[] = Array.from({ length: nodeCount }, () => {
-      const bVx = (Math.random() - 0.5) * 0.5;
-      const bVy = (Math.random() - 0.5) * 0.5;
+      const bVx = (Math.random() - 0.5) * (isMobile ? 0.35 : 0.5);
+      const bVy = (Math.random() - 0.5) * (isMobile ? 0.35 : 0.5);
       return {
         x: Math.random() * w,
         y: Math.random() * h,
@@ -94,9 +120,9 @@ export default function BioNeuralCanvas() {
     });
 
     const biophotons: Biophoton[] = [];
-    const maxBiophotons = 36;
-    const mouseRadius = 190;
-    const connectionDist = 140;
+    const maxBiophotons = isMobile ? 20 : 36;
+    const mouseRadius = isMobile ? 140 : 190;
+    const connectionDist = isMobile ? 115 : 140;
 
     let lastTime = 0;
 
@@ -328,6 +354,9 @@ export default function BioNeuralCanvas() {
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseleave", handleMouseLeave);
+      window.removeEventListener("touchstart", handleTouchMove);
+      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("touchend", handleTouchEnd);
     };
   }, []);
 

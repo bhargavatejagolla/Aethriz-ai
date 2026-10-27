@@ -159,7 +159,7 @@ export default function AnatomyViewer() {
   };
 
   return (
-    <div className="relative w-full rounded-3xl overflow-hidden border border-gray-800 bg-gradient-to-b from-[#06080F] via-[#0B0F1A] to-[#04060A] shadow-2xl flex flex-col min-h-[680px] sm:min-h-[740px]">
+    <div className="relative w-full rounded-3xl overflow-hidden border border-gray-800 bg-gradient-to-b from-[#06080F] via-[#0B0F1A] to-[#04060A] shadow-2xl flex flex-col min-h-[560px] sm:min-h-[740px]">
       {/* 3D WebGL Canvas Layer */}
       <div className="absolute inset-0 z-0">
         {atlas && (
@@ -247,8 +247,8 @@ export default function AnatomyViewer() {
       </div>
 
       {/* Preset Action Strip: Important Meshes & Organs */}
-      <div className="relative z-20 px-4 sm:px-6 pointer-events-auto">
-        <div className="flex flex-wrap items-center gap-1.5 p-1.5 bg-gray-950/70 border border-gray-800/80 rounded-2xl backdrop-blur-md max-w-full">
+      <div className="relative z-20 px-3 sm:px-6 pointer-events-auto">
+        <div className="flex items-center gap-1.5 p-1.5 bg-gray-950/70 border border-gray-800/80 rounded-2xl backdrop-blur-md max-w-full overflow-x-auto no-scrollbar scrollbar-none">
           {CLINICAL_PRESETS.map(preset => {
             const isActive = activePreset === preset.id;
             const PresetIcon = 

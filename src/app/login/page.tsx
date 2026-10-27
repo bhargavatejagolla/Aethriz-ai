@@ -75,9 +75,9 @@ export default function LoginPage() {
       </div>
 
       {/* Main Login Card */}
-      <div className="w-full max-w-md glass-panel p-8 rounded-3xl relative z-10 shadow-xl border border-red-100">
+      <div className="w-full max-w-md glass-panel p-5 sm:p-8 rounded-3xl relative z-10 shadow-xl border border-red-100">
         {/* Official Brand Header */}
-        <div className="text-center mb-8 flex flex-col items-center">
+        <div className="text-center mb-6 sm:mb-8 flex flex-col items-center">
           <div className="mb-3">
             <AethrizLogo size="md" variant="full" />
           </div>

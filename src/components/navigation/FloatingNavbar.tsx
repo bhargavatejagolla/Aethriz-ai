@@ -135,7 +135,16 @@ export default function FloatingNavbar() {
 
         {/* Mobile Dropdown Drawer */}
         {mobileOpen && (
-          <div className="lg:hidden mt-2 glass-floating-nav rounded-2xl p-4 border border-white/80 shadow-xl space-y-3 pointer-events-auto animate-fadeIn">
+          <div className="lg:hidden mt-2 glass-floating-nav rounded-2xl p-4 sm:p-5 border border-white/80 shadow-2xl space-y-4 pointer-events-auto animate-fadeIn max-h-[85vh] overflow-y-auto">
+            <div className="flex items-center justify-between pb-2 border-b border-gray-100">
+              <span className="text-[10px] font-mono uppercase tracking-wider font-bold text-red-600">
+                AETHRIZ Navigation Deck
+              </span>
+              <span className="text-[10px] font-mono text-gray-500">
+                Clinical Health Portal
+              </span>
+            </div>
+
             <div className="grid grid-cols-2 gap-2 text-xs font-bold text-gray-700">
               {navLinks.map((link) => {
                 const isActive = pathname === link.href;
@@ -144,49 +153,65 @@ export default function FloatingNavbar() {
                     key={link.href}
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
-                    className={`p-2.5 rounded-xl border flex items-center gap-2 transition-all ${
+                    className={`p-3 min-h-[48px] rounded-xl border flex items-center gap-2.5 transition-all ${
                       isActive
-                        ? "bg-red-50 border-red-200 text-red-600 font-extrabold"
-                        : "bg-white/60 border-gray-100 hover:bg-red-50/50"
+                        ? "bg-red-50 border-red-300 text-red-600 font-extrabold shadow-xs"
+                        : "bg-white/80 border-gray-100 hover:bg-red-50/50 text-gray-800"
                     }`}
                   >
-                    <link.icon className="w-4 h-4 text-red-500" />
-                    <span>{link.label}</span>
+                    <link.icon className={`w-4 h-4 shrink-0 ${isActive ? "text-red-600" : "text-red-500"}`} />
+                    <span className="truncate">{link.label}</span>
                   </Link>
                 );
               })}
             </div>
 
             {/* Mobile Auth Button */}
-            <div className="pt-2 border-t border-gray-100 flex items-center justify-between">
+            <div className="pt-3 border-t border-gray-100 space-y-2">
               {isAuthenticated && user ? (
-                <div className="w-full flex items-center justify-between">
+                <div className="w-full flex items-center justify-between bg-white/80 p-3 rounded-xl border border-gray-100">
                   <Link
                     href={getRoleRedirectPath(user.role)}
                     onClick={() => setMobileOpen(false)}
                     className="text-xs font-bold text-gray-900 flex items-center gap-2"
                   >
-                    <span>Dashboard ({user.role})</span>
+                    <div className="w-7 h-7 rounded-full bg-red-100 text-red-700 flex items-center justify-center font-bold text-xs">
+                      <User className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <span className="block leading-tight text-gray-900 font-bold">{user.fullName.split(" ")[0]}</span>
+                      <span className="text-[9px] font-mono text-red-600 uppercase font-bold">{user.role} Dashboard</span>
+                    </div>
                   </Link>
                   <button
                     onClick={() => {
                       logout();
                       setMobileOpen(false);
                     }}
-                    className="text-xs text-red-600 font-bold hover:underline"
+                    className="text-xs text-red-600 font-bold hover:underline px-2 py-1 rounded-lg hover:bg-red-50"
                   >
                     Sign Out
                   </button>
                 </div>
               ) : (
-                <Link
-                  href="/login"
-                  onClick={() => setMobileOpen(false)}
-                  className="w-full py-2.5 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-md shadow-red-500/20"
-                >
-                  <LogIn className="w-4 h-4" />
-                  <span>Portal Sign In</span>
-                </Link>
+                <div className="grid grid-cols-2 gap-2">
+                  <Link
+                    href="/login"
+                    onClick={() => setMobileOpen(false)}
+                    className="py-3 min-h-[44px] rounded-xl bg-gradient-to-r from-red-600 to-rose-600 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-md shadow-red-500/20"
+                  >
+                    <LogIn className="w-3.5 h-3.5" />
+                    <span>Sign In</span>
+                  </Link>
+                  <Link
+                    href="/signup"
+                    onClick={() => setMobileOpen(false)}
+                    className="py-3 min-h-[44px] rounded-xl bg-white border border-gray-200 hover:border-red-300 text-gray-800 font-bold text-xs flex items-center justify-center gap-1.5 shadow-xs"
+                  >
+                    <Users className="w-3.5 h-3.5 text-red-600" />
+                    <span>Register</span>
+                  </Link>
+                </div>
               )}
             </div>
           </div>

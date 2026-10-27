@@ -81,13 +81,13 @@ export default function SignupPage() {
       </div>
 
       {/* Main Registration Card */}
-      <div className="w-full max-w-lg glass-panel p-8 sm:p-10 rounded-3xl relative z-10 shadow-xl border border-red-100">
+      <div className="w-full max-w-lg glass-panel p-5 sm:p-8 rounded-3xl relative z-10 shadow-xl border border-red-100">
         {/* Brand Header */}
         <div className="text-center mb-6 flex flex-col items-center">
           <div className="mb-3">
             <AethrizLogo size="md" variant="full" />
           </div>
-          <h1 className="text-2xl font-black text-gray-900 tracking-tight mt-1">
+          <h1 className="text-xl sm:text-2xl font-black text-gray-900 tracking-tight mt-1">
             Create Your AETHRIZ Account
           </h1>
           <p className="text-xs text-gray-600 mt-1 font-medium">
@@ -100,7 +100,7 @@ export default function SignupPage() {
           <label className="text-[11px] font-mono font-bold text-gray-500 uppercase tracking-wider block mb-2.5">
             Select Account Identity
           </label>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {/* Patient Option */}
             <button
               type="button"

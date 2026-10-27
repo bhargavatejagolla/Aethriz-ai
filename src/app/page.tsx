@@ -186,7 +186,7 @@ export default function HomePage() {
 
               {/* Clean, Rock-Solid Left-Aligned Main Title */}
               <div className="space-y-1 text-left">
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.12]">
+                <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.14]">
                   <span className="block text-slate-900">The Zenith of</span>
                   <span className="block bg-gradient-to-r from-red-600 via-rose-600 to-red-700 bg-clip-text text-transparent">
                     Bio-Algorithmic
@@ -196,14 +196,14 @@ export default function HomePage() {
               </div>
 
               {/* Sub-copy */}
-              <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-xl font-medium text-left">
+              <p className="text-xs sm:text-base text-slate-600 leading-relaxed max-w-xl font-medium text-left">
                 Engineered by <strong className="text-slate-900 font-bold">Aethriz AI Healthcare And Advanced Research Private Limited</strong>. 
                 Integrating ambient wearable telemetry, optical food plate scanning, 3D anatomical visualization, 
                 and board-certified physician decision support.
               </p>
 
               {/* Hero Call-to-Actions */}
-              <div className="flex flex-wrap items-center gap-4 pt-2">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
                 <StarBorder
                   as={Link}
                   href="/health-analysis"
@@ -216,7 +216,7 @@ export default function HomePage() {
                   backgroundColor="#DC2626"
                   textColor="#FFFFFF"
                   borderColor="rgba(220, 38, 38, 0.3)"
-                  className="shadow-lg shadow-red-500/25 hover:shadow-xl hover:shadow-red-500/40 text-xs font-bold transition-all px-6 py-3.5 flex items-center gap-2"
+                  className="shadow-lg shadow-red-500/25 hover:shadow-xl hover:shadow-red-500/40 text-xs font-bold transition-all px-6 py-3.5 flex items-center justify-center gap-2 w-full sm:w-auto"
                 >
                   <Sparkles className="w-4 h-4 text-white" />
                   <span className="text-white">Start Free AI Health Trial</span>
@@ -225,7 +225,7 @@ export default function HomePage() {
 
                 <Link
                   href="/booking"
-                  className="px-6 py-3.5 rounded-2xl bg-white hover:bg-gray-50 border border-gray-200 text-gray-900 font-bold text-xs shadow-sm hover:border-gray-300 transition-all flex items-center gap-2"
+                  className="px-6 py-3.5 rounded-2xl bg-white hover:bg-gray-50 border border-gray-200 text-gray-900 font-bold text-xs shadow-sm hover:border-gray-300 transition-all flex items-center justify-center gap-2 w-full sm:w-auto"
                 >
                   <Calendar className="w-4 h-4 text-red-600" />
                   <span>Book Doctor Consultation</span>
@@ -343,9 +343,9 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="flex items-center justify-between text-[11px] font-mono text-slate-400 pt-3 border-t border-slate-100 mt-3">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between text-[11px] font-mono text-slate-400 pt-3 border-t border-slate-100 mt-3 gap-2">
               <span className="flex items-center gap-1.5">
-                <Fingerprint className="w-3.5 h-3.5 text-red-500" />
+                <Fingerprint className="w-3.5 h-3.5 text-red-500 shrink-0" />
                 <span>Interactive Biophysical Glyphs • Multi-Modal Signal Decomposition</span>
               </span>
               <span className="text-emerald-600 font-semibold">
@@ -358,7 +358,7 @@ export default function HomePage() {
         {/* =========================================================================
             BIO-DIGITAL REFRACTION DECK: React Bits <GlassIcons /> 3D Liquid Refraction
             ========================================================================= */}
-        <section className="glass-panel p-6 sm:p-8 rounded-3xl border border-red-100/90 shadow-xl shadow-red-500/5 text-center space-y-6">
+        <section className="glass-panel p-5 sm:p-8 rounded-3xl border border-red-100/90 shadow-xl shadow-red-500/5 text-center space-y-6">
           <div className="max-w-2xl mx-auto space-y-1.5">
             <span className="text-[10px] font-mono font-bold text-red-600 uppercase tracking-widest bg-red-50 border border-red-200 px-2.5 py-1 rounded-full">
               BIO-DIGITAL REFRACTION SUITE
@@ -371,29 +371,31 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="pt-6 pb-8 px-2 flex justify-center items-center w-full overflow-visible">
-            <GlassIcons
-              items={modalityGlassItems}
-              size={66}
-              gap={20}
-              columns={6}
-              roundness={0.65}
-              refraction={0.8}
-              bevel={0.6}
-              dispersion={0.05}
-              frost={0.25}
-              shine={0.9}
-              tint="#ffffff"
-              tintOpacity={0.85}
-              plate="none"
-              tilt={0}
-              spread={0}
-              hover="none"
-              parallax={0}
-              labels="always"
-              intro={false}
-              theme="light"
-            />
+          <div className="pt-4 pb-6 px-1 w-full overflow-x-auto no-scrollbar scrollbar-none flex justify-start md:justify-center">
+            <div className="min-w-[540px] md:min-w-0 flex justify-center py-2">
+              <GlassIcons
+                items={modalityGlassItems}
+                size={64}
+                gap={18}
+                columns={6}
+                roundness={0.65}
+                refraction={0.8}
+                bevel={0.6}
+                dispersion={0.05}
+                frost={0.25}
+                shine={0.9}
+                tint="#ffffff"
+                tintOpacity={0.85}
+                plate="none"
+                tilt={0}
+                spread={0}
+                hover="none"
+                parallax={0}
+                labels="always"
+                intro={false}
+                theme="light"
+              />
+            </div>
           </div>
         </section>
 

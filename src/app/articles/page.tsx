@@ -239,7 +239,7 @@ export default function ArticlesPage() {
         </div>
 
         {/* Spotlight 3D Clinical Case Study with TiltedCard */}
-        <div className="bg-gradient-to-br from-slate-900 to-[#111318] rounded-3xl p-6 sm:p-10 border border-slate-800 text-white relative overflow-hidden shadow-2xl">
+        <div className="bg-gradient-to-br from-slate-900 to-[#111318] rounded-3xl p-5 sm:p-10 border border-slate-800 text-white relative overflow-hidden shadow-2xl">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
             <div className="max-w-xl space-y-4">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-950/80 border border-red-500/30 text-red-400 text-xs font-mono font-semibold">
@@ -252,7 +252,7 @@ export default function ArticlesPage() {
                   Bio-Algorithmic Vasopressor Recovery
                 </span>
               </h2>
-              <p className="text-slate-300 text-sm leading-relaxed">
+              <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
                 Interact with this verified patient record. Hover to examine real-time depth parallax layers, or click to flip the record and examine the ICU arterial cannulation and norepinephrine titration charts.
               </p>
               <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-slate-400 pt-2">
@@ -264,12 +264,13 @@ export default function ArticlesPage() {
               </div>
             </div>
 
-            <div className="w-full lg:w-auto flex justify-center">
-              <TiltedCard
-                containerHeight="340px"
-                containerWidth="340px"
-                imageHeight="340px"
-                imageWidth="340px"
+            <div className="w-full lg:w-auto flex justify-center max-w-full overflow-hidden">
+              <div className="scale-[0.88] sm:scale-100 origin-center">
+                <TiltedCard
+                  containerHeight="340px"
+                  containerWidth="340px"
+                  imageHeight="340px"
+                  imageWidth="340px"
                 rotateAmplitude={15}
                 scaleOnHover={1.06}
                 showTooltip={true}
@@ -333,6 +334,7 @@ export default function ArticlesPage() {
                   </TiltedCardLayer>
                 </div>
               </TiltedCard>
+              </div>
             </div>
           </div>
         </div>
