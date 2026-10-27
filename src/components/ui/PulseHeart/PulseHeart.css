@@ -1,0 +1,120 @@
+.pulse-heart {
+  --ph-size: 40px;
+  --ph-corner: 32px;
+  --ph-pill: #232326;
+  --ph-idle: #8b8b93;
+  --ph-liked: #ff4d6d;
+  --ph-text: #f5f5f5;
+  --ph-roll: 350ms;
+  --ph-stroke: 2.5px;
+  --ph-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--ph-corner);
+  background: none;
+  color: var(--ph-text);
+  font-family: inherit;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  outline: none;
+  transition: transform 160ms var(--ph-ease-out);
+}
+
+.pulse-heart[data-pressed] {
+  transform: scale(0.97);
+}
+
+.pulse-heart:focus-visible {
+  outline: 2px solid var(--ph-liked);
+  outline-offset: 2px;
+}
+
+.pulse-heart__pill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--ph-size) * 0.18);
+  height: var(--ph-size);
+  padding: 0 calc(var(--ph-size) * 0.32);
+  border-radius: var(--ph-corner);
+  background: var(--ph-pill);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: background-color 200ms ease, transform 160ms var(--ph-ease-out);
+  will-change: transform;
+}
+
+.pulse-heart__heart {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(var(--ph-size) * 0.55);
+  height: calc(var(--ph-size) * 0.55);
+  flex-shrink: 0;
+  will-change: transform;
+}
+
+.pulse-heart__heart svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  display: block;
+}
+
+.pulse-heart__heart path {
+  transition: fill 240ms ease, stroke 240ms ease;
+}
+
+.pulse-heart__count {
+  display: inline-flex;
+  align-items: center;
+  font-size: calc(var(--ph-size) * 0.36);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--ph-text);
+  overflow: hidden;
+  height: 1.1em;
+}
+
+.pulse-heart__slot {
+  display: inline-block;
+  position: relative;
+  height: 1.1em;
+  overflow: hidden;
+}
+
+.pulse-heart__roll {
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--ph-roll) var(--ph-ease-out);
+  will-change: transform;
+}
+
+.pulse-heart__roll span {
+  display: block;
+  height: 1.1em;
+  line-height: 1.1em;
+  text-align: center;
+}
+
+.pulse-heart__sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

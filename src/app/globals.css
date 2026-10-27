@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --primary: #DC2626;
+    --primary-dark: #991B1B;
+    --primary-light: #FEE2E2;
+    --primary-ultra: #FDF4F5;
+    --success: #10B981;
+    --warning: #F59E0B;
+    --info: #0284C7;
+    --text-main: #111318;
+    --text-muted: #64748B;
+    --border-subtle: #E2E8F0;
+    --bg-page: #FDF4F5;
+    --surface: #FFFFFF;
+    --obsidian: #111318;
+    --dark-terminal: #0B0E14;
+  }
+
+  body {
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+}
+
+/* Bio-Algorithmic Dot Grid Background */
+.bio-grid-canvas {
+  background-size: 32px 32px;
+  background-image: 
+    radial-gradient(circle, rgba(220, 38, 38, 0.055) 1.2px, transparent 1.2px),
+    linear-gradient(to right, rgba(220, 38, 38, 0.014) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(220, 38, 38, 0.014) 1px, transparent 1px);
+}
+
+/* Liquid Light Text Shimmer */
+.hero-shimmer {
+  background: linear-gradient(135deg, #DC2626 0%, #FF2E63 25%, #E11D48 50%, #991B1B 75%, #DC2626 100%);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textShimmer 3.8s ease-in-out infinite alternate;
+  display: inline-block;
+}
+
+@keyframes textShimmer {
+  0% { background-position: 0% center; }
+  100% { background-position: 250% center; }
+}
+
+/* Deep Multi-Layer Glassmorphism Classes */
+.glass-panel {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.86) 0%, rgba(255, 255, 255, 0.68) 100%);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 12px 32px -4px rgba(220, 38, 38, 0.06), 0 4px 12px -2px rgba(0, 0, 0, 0.03), inset 0 1px 2px 0 rgba(255, 255, 255, 0.9);
+}
+
+.glass-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.62) 100%);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 8px 24px -2px rgba(220, 38, 38, 0.04), inset 0 1px 1px 0 rgba(255, 255, 255, 0.95);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px -4px rgba(220, 38, 38, 0.09), inset 0 1px 2px 0 rgba(255, 255, 255, 1);
+  border-color: rgba(220, 38, 38, 0.25);
+}
+
+.glass-floating-nav {
+  background: rgba(255, 255, 255, 0.84);
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.92);
+  box-shadow: 0 14px 34px -4px rgba(220, 38, 38, 0.08), 0 6px 14px -2px rgba(0, 0, 0, 0.04), inset 0 1px 2px 0 rgba(255, 255, 255, 0.95);
+}
+
+.hud-dark-terminal {
+  background: #0B0E14;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.45);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #DC2626;
+}
