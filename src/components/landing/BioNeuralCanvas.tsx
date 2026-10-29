@@ -26,6 +26,36 @@ interface Biophoton {
   color: string;
 }
 
+interface PacemakerWave {
+  x: number;
+  y: number;
+  radius: number;
+  maxRadius: number;
+  alpha: number;
+  speed: number;
+}
+
+interface Ripple {
+  x: number;
+  y: number;
+  radius: number;
+  maxRadius: number;
+  alpha: number;
+  speed: number;
+  color: string;
+}
+
+interface PlasmaParticle {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  radius: number;
+  alpha: number;
+  phase: number;
+  color: string;
+}
+
 export default function BioNeuralCanvas() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
@@ -86,24 +116,17 @@ export default function BioNeuralCanvas() {
     };
 
     const handleTouchEnd = () => {
-      // Fade out slowly on touch release
       setTimeout(() => {
         mouse.active = false;
       }, 1200);
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("mouseleave", handleMouseLeave);
-    window.addEventListener("touchstart", handleTouchMove, { passive: true });
-    window.addEventListener("touchmove", handleTouchMove, { passive: true });
-    window.addEventListener("touchend", handleTouchEnd, { passive: true });
-
     // Adaptive Node Count for Mobile Efficiency
     const isMobile = w < 768;
-    const nodeCount = isMobile ? 32 : 52;
+    const nodeCount = isMobile ? 32 : 54;
     const nodes: Node[] = Array.from({ length: nodeCount }, () => {
-      const bVx = (Math.random() - 0.5) * (isMobile ? 0.35 : 0.5);
-      const bVy = (Math.random() - 0.5) * (isMobile ? 0.35 : 0.5);
+      const bVx = (Math.random() - 0.5) * (isMobile ? 0.35 : 0.48);
+      const bVy = (Math.random() - 0.5) * (isMobile ? 0.35 : 0.48);
       return {
         x: Math.random() * w,
         y: Math.random() * h,
@@ -120,9 +143,72 @@ export default function BioNeuralCanvas() {
     });
 
     const biophotons: Biophoton[] = [];
-    const maxBiophotons = isMobile ? 20 : 36;
+    const maxBiophotons = isMobile ? 22 : 38;
     const mouseRadius = isMobile ? 140 : 190;
-    const connectionDist = isMobile ? 115 : 140;
+    const connectionDist = isMobile ? 115 : 145;
+
+    // Pacemaker Waves (70 BPM sinus rhythm = 857ms)
+    const pacemakerWaves: PacemakerWave[] = [];
+    let lastPacemakerTime = 0;
+    const pacemakerPeriod = 857;
+
+    // Interactive Kinetic Synaptic Ripples
+    const ripples: Ripple[] = [];
+    const handlePointerDown = (e: MouseEvent | TouchEvent) => {
+      let cx = 0;
+      let cy = 0;
+      if ("clientX" in e) {
+        cx = (e as MouseEvent).clientX;
+        cy = (e as MouseEvent).clientY;
+      } else if ("touches" in e && (e as TouchEvent).touches.length > 0) {
+        cx = (e as TouchEvent).touches[0].clientX;
+        cy = (e as TouchEvent).touches[0].clientY;
+      }
+
+      if (cx > 0 && cy > 0) {
+        ripples.push({
+          x: cx,
+          y: cy,
+          radius: 4,
+          maxRadius: isMobile ? 220 : 340,
+          alpha: 0.55,
+          speed: 4.2,
+          color: Math.random() > 0.4 ? "#DC2626" : "#0284C7",
+        });
+
+        // Kinetic excitation to nearby nodes
+        nodes.forEach((n) => {
+          const dx = n.x - cx;
+          const dy = n.y - cy;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 260) {
+            n.glowIntensity = 1.0;
+            const pushForce = (1 - dist / 260) * 2.2;
+            n.vx += (dx / (dist || 1)) * pushForce;
+            n.vy += (dy / (dist || 1)) * pushForce;
+          }
+        });
+      }
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseleave", handleMouseLeave);
+    window.addEventListener("touchstart", handleTouchMove, { passive: true });
+    window.addEventListener("touchmove", handleTouchMove, { passive: true });
+    window.addEventListener("touchend", handleTouchEnd, { passive: true });
+    window.addEventListener("pointerdown", handlePointerDown);
+
+    // Micro-Plasma Cellular Particles (delicate blood plasma stream)
+    const plasmaParticles: PlasmaParticle[] = Array.from({ length: isMobile ? 14 : 26 }, () => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      vx: 0.12 + Math.random() * 0.22,
+      vy: -0.08 - Math.random() * 0.18,
+      radius: 0.8 + Math.random() * 0.8,
+      alpha: 0.12 + Math.random() * 0.18,
+      phase: Math.random() * Math.PI * 2,
+      color: Math.random() > 0.35 ? "#DC2626" : "#0284C7",
+    }));
 
     let lastTime = 0;
 
@@ -131,6 +217,7 @@ export default function BioNeuralCanvas() {
 
       if (lastTime === 0) {
         lastTime = now;
+        lastPacemakerTime = now;
         animId = requestAnimationFrame(render);
         return;
       }
@@ -138,12 +225,28 @@ export default function BioNeuralCanvas() {
       const dt = Math.max(0.001, Math.min((now - lastTime) / 1000, 0.05));
       lastTime = now;
 
-      // Smooth mouse interpolation (spring lag for liquid organic feel)
+      // -----------------------------------------------------------------------
+      // Periodic Bio-Pacemaker Wave (70 BPM sinus rhythm)
+      // -----------------------------------------------------------------------
+      if (now - lastPacemakerTime > pacemakerPeriod) {
+        lastPacemakerTime = now;
+        const originX = mouse.active && mouse.x > 0 ? mouse.x : w / 2;
+        const originY = mouse.active && mouse.y > 0 ? mouse.y : h / 2;
+        pacemakerWaves.push({
+          x: originX,
+          y: originY,
+          radius: 8,
+          maxRadius: Math.max(w, h) * 0.7,
+          alpha: 0.14,
+          speed: isMobile ? 3.4 : 4.4,
+        });
+      }
+
+      // Smooth mouse spring interpolation
       if (mouse.active) {
         mouse.x += (mouse.targetX - mouse.x) * 0.18;
         mouse.y += (mouse.targetY - mouse.y) * 0.18;
 
-        // Auto-fade mouse activity if idle for > 4 seconds
         if (now - mouse.lastMoveTime > 4000) {
           mouse.active = false;
         }
@@ -152,10 +255,92 @@ export default function BioNeuralCanvas() {
       ctx.clearRect(0, 0, w, h);
 
       // -----------------------------------------------------------------------
-      // 1. Interactive Mouse Beacon Aura & Direct Neural Synaptic Links
+      // 1. Render Pacemaker Arterial Waves
+      // -----------------------------------------------------------------------
+      for (let p = pacemakerWaves.length - 1; p >= 0; p--) {
+        const pw = pacemakerWaves[p];
+        pw.radius += pw.speed;
+        const progress = pw.radius / pw.maxRadius;
+        if (progress >= 1) {
+          pacemakerWaves.splice(p, 1);
+          continue;
+        }
+
+        const curAlpha = pw.alpha * (1 - progress);
+        ctx.beginPath();
+        ctx.arc(pw.x, pw.y, Math.max(0.1, pw.radius), 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(210, 1, 23, ${curAlpha * 0.4})`;
+        ctx.lineWidth = 1.0;
+        ctx.stroke();
+
+        // Subtly excite nodes that the wave ripples through
+        nodes.forEach((n) => {
+          const dx = n.x - pw.x;
+          const dy = n.y - pw.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (Math.abs(dist - pw.radius) < 20) {
+            n.glowIntensity = Math.min(1, n.glowIntensity + 0.08 * (1 - progress));
+          }
+        });
+      }
+
+      // -----------------------------------------------------------------------
+      // 2. Interactive Kinetic Click/Tap Synaptic Ripples
+      // -----------------------------------------------------------------------
+      for (let r = ripples.length - 1; r >= 0; r--) {
+        const rp = ripples[r];
+        rp.radius += rp.speed;
+        const progress = rp.radius / rp.maxRadius;
+        if (progress >= 1) {
+          ripples.splice(r, 1);
+          continue;
+        }
+
+        const curAlpha = rp.alpha * (1 - progress);
+        ctx.beginPath();
+        ctx.arc(rp.x, rp.y, Math.max(0.1, rp.radius), 0, Math.PI * 2);
+        ctx.strokeStyle =
+          rp.color === "#DC2626"
+            ? `rgba(220, 38, 38, ${curAlpha})`
+            : `rgba(2, 132, 199, ${curAlpha})`;
+        ctx.lineWidth = 1.6;
+        ctx.stroke();
+
+        // Secondary subtle inner echo
+        if (rp.radius > 25) {
+          ctx.beginPath();
+          ctx.arc(rp.x, rp.y, Math.max(0.1, rp.radius - 20), 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(220, 38, 38, ${curAlpha * 0.35})`;
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
+        }
+      }
+
+      // -----------------------------------------------------------------------
+      // 3. Cellular Micro-Plasma Flow (laminar organic drifting particles)
+      // -----------------------------------------------------------------------
+      plasmaParticles.forEach((p) => {
+        p.phase += 0.018;
+        p.x += p.vx + Math.sin(p.phase) * 0.2;
+        p.y += p.vy;
+        if (p.x > w + 10) p.x = -10;
+        if (p.x < -10) p.x = w + 10;
+        if (p.y < -10) p.y = h + 10;
+        if (p.y > h + 10) p.y = -10;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, Math.max(0.1, p.radius), 0, Math.PI * 2);
+        ctx.fillStyle =
+          p.color === "#DC2626"
+            ? `rgba(220, 38, 38, ${p.alpha})`
+            : `rgba(2, 132, 199, ${p.alpha})`;
+        ctx.fill();
+      });
+
+      // -----------------------------------------------------------------------
+      // 4. Interactive Mouse Beacon Aura
       // -----------------------------------------------------------------------
       if (mouse.active && mouse.x > 0 && mouse.y > 0) {
-        // Delicate, non-intrusive radial bio-field around cursor
         const auraGrad = ctx.createRadialGradient(
           mouse.x,
           mouse.y,
@@ -164,23 +349,22 @@ export default function BioNeuralCanvas() {
           mouse.y,
           mouseRadius
         );
-        auraGrad.addColorStop(0, "rgba(210, 1, 23, 0.08)");
-        auraGrad.addColorStop(0.5, "rgba(210, 1, 23, 0.025)");
+        auraGrad.addColorStop(0, "rgba(210, 1, 23, 0.07)");
+        auraGrad.addColorStop(0.5, "rgba(210, 1, 23, 0.02)");
         auraGrad.addColorStop(1, "rgba(210, 1, 23, 0)");
 
         ctx.beginPath();
-        ctx.arc(mouse.x, mouse.y, mouseRadius, 0, Math.PI * 2);
+        ctx.arc(mouse.x, mouse.y, Math.max(0.1, mouseRadius), 0, Math.PI * 2);
         ctx.fillStyle = auraGrad;
         ctx.fill();
       }
 
       // -----------------------------------------------------------------------
-      // 2. Update & Draw Neural Nodes with Mouse Attraction Physics
+      // 5. Update & Draw Neural Nodes with Magnetic Mouse Physics
       // -----------------------------------------------------------------------
       nodes.forEach((n) => {
         n.pulse += n.pulseSpeed;
 
-        // Mouse interaction & attraction physics
         if (mouse.active) {
           const dx = mouse.x - n.x;
           const dy = mouse.y - n.y;
@@ -188,15 +372,13 @@ export default function BioNeuralCanvas() {
 
           if (dist < mouseRadius) {
             const proximity = 1 - dist / mouseRadius;
-            // Gentle magnetic attraction towards cursor
             const pullForce = proximity * proximity * 0.8;
             n.vx += (dx / (dist || 1)) * pullForce;
             n.vy += (dy / (dist || 1)) * pullForce;
 
-            // Excite node glow
             n.glowIntensity = Math.min(1, n.glowIntensity + proximity * 0.15);
 
-            // Draw direct dynamic synaptic wire from cursor to node
+            // Dynamic synaptic wire from cursor to node
             const lineAlpha = proximity * 0.45;
             ctx.beginPath();
             ctx.moveTo(mouse.x, mouse.y);
@@ -220,17 +402,16 @@ export default function BioNeuralCanvas() {
           }
         }
 
-        // Decay glow intensity smoothly
         n.glowIntensity = Math.max(0, n.glowIntensity - 0.02);
 
-        // Fluid friction: gently return node to natural baseline velocity
+        // Fluid friction return
         n.vx = n.vx * 0.94 + n.baseVx * 0.06;
         n.vy = n.vy * 0.94 + n.baseVy * 0.06;
 
         n.x += n.vx;
         n.y += n.vy;
 
-        // Soft bounce off boundaries
+        // Boundaries
         const padding = 20;
         if (n.x < padding) {
           n.x = padding;
@@ -252,7 +433,7 @@ export default function BioNeuralCanvas() {
           n.baseVy = -Math.abs(n.baseVy);
         }
 
-        // Draw node with rhythmic bio-glow
+        // Draw node
         const pulseSine = (Math.sin(n.pulse) + 1) * 0.5;
         const totalGlow = pulseSine * 0.4 + n.glowIntensity * 0.6;
         const currentRadius = Math.max(0.1, n.radius + totalGlow * 2.2);
@@ -265,7 +446,6 @@ export default function BioNeuralCanvas() {
             : `rgba(2, 132, 199, ${0.3 + totalGlow * 0.5})`;
         ctx.fill();
 
-        // Outer halo on excited node
         if (n.glowIntensity > 0.25) {
           const haloRadius = Math.max(0.1, currentRadius + n.glowIntensity * 4);
           ctx.beginPath();
@@ -276,7 +456,7 @@ export default function BioNeuralCanvas() {
       });
 
       // -----------------------------------------------------------------------
-      // 3. Inter-Node Synaptic Network Connections
+      // 6. Inter-Node Synaptic Network Connections
       // -----------------------------------------------------------------------
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
@@ -311,7 +491,7 @@ export default function BioNeuralCanvas() {
       }
 
       // -----------------------------------------------------------------------
-      // 4. Traveling Action Potential Biophotons
+      // 7. Traveling Action Potential Biophotons
       // -----------------------------------------------------------------------
       for (let k = biophotons.length - 1; k >= 0; k--) {
         const bp = biophotons[k];
@@ -347,6 +527,7 @@ export default function BioNeuralCanvas() {
       window.removeEventListener("touchstart", handleTouchMove);
       window.removeEventListener("touchmove", handleTouchMove);
       window.removeEventListener("touchend", handleTouchEnd);
+      window.removeEventListener("pointerdown", handlePointerDown);
     };
   }, []);
 
@@ -354,7 +535,7 @@ export default function BioNeuralCanvas() {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 w-screen h-screen pointer-events-none z-0"
-      style={{ opacity: 0.9 }}
+      style={{ opacity: 0.92 }}
     />
   );
 }

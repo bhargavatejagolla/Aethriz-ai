@@ -50,18 +50,25 @@ export default function ContactSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
           {/* Left Column: Official Registered Corporate Information */}
           <div className="space-y-6">
-            <div className="bg-white/80 p-6 rounded-2xl border border-gray-200 space-y-4 shadow-sm">
-              <h3 className="text-sm font-bold text-gray-900 font-mono uppercase tracking-wider flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-red-600" />
-                <span>Registered Headquarters</span>
-              </h3>
+            <div className="bg-white/80 p-6 rounded-2xl border border-gray-200 space-y-4 shadow-sm relative overflow-hidden group">
+              <div className="flex items-center justify-between">
+                <h3 className="text-sm font-bold text-gray-900 font-mono uppercase tracking-wider flex items-center gap-2">
+                  <MapPin className="w-4 h-4 text-red-600" />
+                  <span>Registered Headquarters</span>
+                </h3>
+                <span className="flex items-center gap-1.5 text-[10px] font-mono text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full font-bold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
+                  <span>20.4625° N, 85.8828° E</span>
+                </span>
+              </div>
               <p className="text-xs text-gray-700 leading-relaxed font-medium">
                 <strong>Aethriz AI Healthcare And Advanced Research Private Limited</strong><br />
                 1st Floor, Jagabandhu Lane, Darkhapatna,<br />
                 Cuttack, Odisha - 753013, India
               </p>
-              <div className="text-[11px] font-mono text-red-600 font-semibold">
-                Ref. No: AAHAAR/NTC/2026-27/02
+              <div className="flex items-center justify-between text-[11px] font-mono pt-1 border-t border-gray-100">
+                <span className="text-red-600 font-semibold">Ref. No: AAHAAR/NTC/2026-27/02</span>
+                <span className="text-gray-500 text-[10px]">Primary Research Cluster</span>
               </div>
             </div>
 

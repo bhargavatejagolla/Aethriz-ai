@@ -19,13 +19,19 @@ import {
   LogIn, 
   LogOut,
   User,
-  ShieldAlert
+  ShieldAlert,
+  Cpu,
+  Zap,
+  Sparkles,
+  ShieldCheck,
+  ArrowUpRight
 } from "lucide-react";
 
 export default function FloatingNavbar() {
   const pathname = usePathname();
   const { user, isAuthenticated, logout, getRoleRedirectPath } = useAuth();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [telemetryOpen, setTelemetryOpen] = useState(false);
 
   const navLinks = [
     { href: "/doctors", label: "Doctors", icon: Stethoscope },
@@ -78,6 +84,85 @@ export default function FloatingNavbar() {
                 </Link>
               );
             })}
+          </div>
+
+          {/* Live Clinical Telemetry Beacon & Interactive Telemetry HUD Dropdown */}
+          <div className="relative hidden xl:block">
+            <button
+              onClick={() => setTelemetryOpen(!telemetryOpen)}
+              className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-50/80 hover:bg-red-100/80 border border-red-200/80 text-[10px] font-mono font-bold text-gray-700 shadow-xs cursor-pointer transition-all group"
+              title="Click to view live biophysical telemetry HUD"
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600" />
+              </span>
+              <span className="text-red-700 font-black">70 BPM</span>
+              <svg className="w-9 h-3.5 text-red-600 overflow-visible group-hover:scale-105 transition-transform" viewBox="0 0 50 14" fill="none">
+                <path
+                  d="M 0 7 L 12 7 L 15 2 L 18 12 L 21 0 L 24 14 L 27 7 L 50 7"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <span className="text-gray-500 font-semibold tracking-wider text-[9px]">SINUS SYNC</span>
+              <Zap className="w-3 h-3 text-red-500 group-hover:rotate-12 transition-transform" />
+            </button>
+
+            {/* Interactive Float Telemetry HUD Popover */}
+            {telemetryOpen && (
+              <div className="absolute right-0 top-full mt-3 w-80 bg-slate-950/95 backdrop-blur-2xl border border-red-500/30 rounded-3xl p-4 shadow-2xl text-white font-mono z-50 animate-fadeIn space-y-3">
+                <div className="flex items-center justify-between border-b border-slate-800 pb-2">
+                  <div className="flex items-center gap-1.5 text-red-400 text-xs font-bold">
+                    <Activity className="w-3.5 h-3.5" />
+                    <span>Live Biophysical Stream</span>
+                  </div>
+                  <span className="text-[9px] bg-emerald-950 text-emerald-400 border border-emerald-800 px-1.5 py-0.5 rounded font-bold">
+                    CONNECTED &bull; 12ms
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-2 gap-2 text-[10px]">
+                  <div className="bg-slate-900/90 p-2 rounded-xl border border-slate-800">
+                    <span className="text-slate-400 block text-[9px]">HEART RATE</span>
+                    <span className="text-emerald-400 font-bold text-sm">70 BPM</span>
+                    <span className="text-[8px] text-slate-500 block">HRV: 62 ms</span>
+                  </div>
+                  <div className="bg-slate-900/90 p-2 rounded-xl border border-slate-800">
+                    <span className="text-slate-400 block text-[9px]">ARTERIAL SpO2</span>
+                    <span className="text-cyan-400 font-bold text-sm">99.2%</span>
+                    <span className="text-[8px] text-slate-500 block">Plethys Normal</span>
+                  </div>
+                  <div className="bg-slate-900/90 p-2 rounded-xl border border-slate-800">
+                    <span className="text-slate-400 block text-[9px]">BP INDEX</span>
+                    <span className="text-white font-bold text-sm">120/80</span>
+                    <span className="text-[8px] text-slate-500 block">MAP: 93.3 mmHg</span>
+                  </div>
+                  <div className="bg-slate-900/90 p-2 rounded-xl border border-slate-800">
+                    <span className="text-slate-400 block text-[9px]">AI INFERENCE</span>
+                    <span className="text-rose-400 font-bold text-sm">99.4% AUC</span>
+                    <span className="text-[8px] text-slate-500 block">Bayesian Tier 1</span>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between text-[9px] text-slate-400 pt-1 border-t border-slate-800/80">
+                  <span className="flex items-center gap-1">
+                    <ShieldCheck className="w-3 h-3 text-emerald-400" />
+                    AES-256 Medical Sync
+                  </span>
+                  <Link
+                    href="/health-analysis"
+                    onClick={() => setTelemetryOpen(false)}
+                    className="text-red-400 hover:text-red-300 font-bold flex items-center gap-0.5 hover:underline"
+                  >
+                    <span>Full Diagnostic Engine</span>
+                    <ArrowUpRight className="w-3 h-3" />
+                  </Link>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Right Session Controls */}

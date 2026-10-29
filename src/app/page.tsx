@@ -8,6 +8,7 @@ import BioNeuralCanvas from "@/components/landing/BioNeuralCanvas";
 import HospitalEcgMonitor from "@/components/landing/HospitalEcgMonitor";
 import ClinicalSimulator from "@/components/landing/ClinicalSimulator";
 import ContactSection from "@/components/landing/ContactSection";
+import BioResonanceRadar from "@/components/landing/BioResonanceRadar";
 import TechText from "@/components/ui/TechText";
 import StrokeText from "@/components/ui/StrokeText";
 import Shuffle from "@/components/ui/Shuffle";
@@ -90,6 +91,7 @@ export default function HomePage() {
       badge: "Medical Faculty",
       desc: "Connect with Stanford, Apollo & AIIMS board-certified clinical cardiologists and genomic specialists.",
       cta: "Explore Specialists",
+      metric: "1,420+ Board Specialists",
     },
     {
       title: "Join the Team (Faculty)",
@@ -98,6 +100,7 @@ export default function HomePage() {
       badge: "Physician Onboarding",
       desc: "Apply to join the AETHRIZ clinical decision-support panel and tele-health specialist network.",
       cta: "Apply for Faculty",
+      metric: "State Medical Council Verification",
     },
     {
       title: "AI Health & Lifestyle Analysis",
@@ -106,6 +109,7 @@ export default function HomePage() {
       badge: "Biomarker Engine",
       desc: "Bayesian risk modeling integrating HbA1c, ApoB, lipid panels, and longitudinal cardiovascular metrics.",
       cta: "Run Risk Analysis",
+      metric: "99.4% AUC Bayesian Tensors",
     },
     {
       title: "AI Food & Product Scanner",
@@ -114,6 +118,7 @@ export default function HomePage() {
       badge: "Optical LiDAR",
       desc: "Multi-item food plate computer vision scanning with real-time calorie, fiber, and macro breakdown.",
       cta: "Scan Food Plate",
+      metric: "Multi-Spectrum LiDAR CV",
     },
     {
       title: "Interactive 3D Body Explorer",
@@ -122,6 +127,7 @@ export default function HomePage() {
       badge: "WebGL Anatomy",
       desc: "Explore full 3D human anatomy with age-based (2 y/o to adult) and gender-based multi-layer shader views.",
       cta: "Launch 3D Explorer",
+      metric: "60 FPS Volumetric Organ Atlas",
     },
     {
       title: "Articles & Patient Journeys",
@@ -130,6 +136,7 @@ export default function HomePage() {
       badge: "Clinical Stories",
       desc: "Read and share personal healthcare stories from ICU survival to cardiac rehabilitation.",
       cta: "Read Experience Feed",
+      metric: "Verified Patient Case Studies",
     },
   ];
 
@@ -261,7 +268,7 @@ export default function HomePage() {
                 </span>
               </div>
               <div className="flex flex-wrap items-center gap-2">
-                {["AETHRIZ", "BIO-AI", "TELEMETRY", "PRECISION"].map((word) => (
+                {["AETHRIZ", "BIO-AI", "TELEMETRY", "PRECISION", "HEMODYNAMICS", "SYNAPSE"].map((word) => (
                   <button
                     key={word}
                     onClick={() => setSelectedWord(word)}
@@ -388,6 +395,13 @@ export default function HomePage() {
         </section>
 
         {/* =========================================================================
+            BIO-RESONANCE ORGAN FREQUENCY RADAR: Multi-System Biophysical Spectrogram
+            ========================================================================= */}
+        <section>
+          <BioResonanceRadar />
+        </section>
+
+        {/* =========================================================================
             FEATURE TILES: All Step 1 Website Sections (Connected Architecture)
             ========================================================================= */}
         <section className="space-y-6">
@@ -430,9 +444,14 @@ export default function HomePage() {
               >
                 <Link
                   href={feat.href}
-                  className="glass-panel w-full h-full p-6 rounded-3xl border border-red-100/80 hover:border-red-400/50 shadow-sm hover:shadow-xl transition-all group flex flex-col justify-between"
+                  className="glass-panel w-full h-full p-6 rounded-3xl border border-red-100/80 hover:border-red-400/50 shadow-sm hover:shadow-xl transition-all group flex flex-col justify-between relative overflow-hidden"
                 >
-                  <div className="space-y-4">
+                  {/* Real-Time Holographic Scanner Laser Sweep on Hover */}
+                  <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="w-full h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent shadow-[0_0_12px_#DC2626] animate-[beamScan_2.4s_ease-in-out_infinite]" />
+                  </div>
+
+                  <div className="space-y-4 relative z-10">
                     <div className="flex items-center justify-between">
                       <div className="w-11 h-11 rounded-2xl bg-red-50 border border-red-100 flex items-center justify-center text-red-600 group-hover:scale-105 transition-transform">
                         <feat.icon className="w-5 h-5" />
@@ -452,9 +471,17 @@ export default function HomePage() {
                     </div>
                   </div>
 
-                  <div className="pt-4 mt-4 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-red-600 group-hover:translate-x-0.5 transition-transform">
-                    <span>{feat.cta}</span>
-                    <ArrowRight className="w-4 h-4" />
+                  <div className="pt-4 mt-4 border-t border-gray-100/80 flex flex-col gap-2 relative z-10">
+                    <div className="flex items-center justify-between text-xs font-bold text-red-600 group-hover:translate-x-0.5 transition-transform">
+                      <span className="text-[10px] font-mono text-gray-500 font-normal flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                        <span>{feat.metric}</span>
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <span>{feat.cta}</span>
+                        <ArrowRight className="w-4 h-4" />
+                      </span>
+                    </div>
                   </div>
                 </Link>
               </GlareHover>

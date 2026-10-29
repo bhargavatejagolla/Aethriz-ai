@@ -137,3 +137,57 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #DC2626;
 }
+
+/* Advanced Bio-Clinical Animations */
+@keyframes beamScan {
+  0% { transform: translateY(-100%); opacity: 0; }
+  20% { opacity: 0.8; }
+  80% { opacity: 0.8; }
+  100% { transform: translateY(1000%); opacity: 0; }
+}
+
+@keyframes radarRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(220, 38, 38, 0); }
+}
+
+@keyframes glassSheen {
+  0% { transform: translateX(-150%) skewX(-25deg); }
+  100% { transform: translateX(250%) skewX(-25deg); }
+}
+
+.animate-radar {
+  animation: radarRotate 4s linear infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.sheen-layer {
+  position: relative;
+  overflow: hidden;
+}
+
+.sheen-layer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  animation: glassSheen 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
