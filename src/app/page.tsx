@@ -444,14 +444,9 @@ export default function HomePage() {
               >
                 <Link
                   href={feat.href}
-                  className="glass-panel w-full h-full p-6 rounded-3xl border border-red-100/80 hover:border-red-400/50 shadow-sm hover:shadow-xl transition-all group flex flex-col justify-between relative overflow-hidden"
+                  className="glass-panel w-full h-full p-6 rounded-3xl border border-red-100/80 hover:border-red-400/50 shadow-sm hover:shadow-xl transition-all group flex flex-col justify-between"
                 >
-                  {/* Real-Time Holographic Scanner Laser Sweep on Hover */}
-                  <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity">
-                    <div className="w-full h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent shadow-[0_0_12px_#DC2626] animate-[beamScan_2.4s_ease-in-out_infinite]" />
-                  </div>
-
-                  <div className="space-y-4 relative z-10">
+                  <div className="space-y-4">
                     <div className="flex items-center justify-between">
                       <div className="w-11 h-11 rounded-2xl bg-red-50 border border-red-100 flex items-center justify-center text-red-600 group-hover:scale-105 transition-transform">
                         <feat.icon className="w-5 h-5" />
@@ -471,7 +466,7 @@ export default function HomePage() {
                     </div>
                   </div>
 
-                  <div className="pt-4 mt-4 border-t border-gray-100/80 flex flex-col gap-2 relative z-10">
+                  <div className="pt-4 mt-4 border-t border-gray-100 flex flex-col gap-2">
                     <div className="flex items-center justify-between text-xs font-bold text-red-600 group-hover:translate-x-0.5 transition-transform">
                       <span className="text-[10px] font-mono text-gray-500 font-normal flex items-center gap-1.5">
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />

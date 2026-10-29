@@ -35,16 +35,6 @@ interface PacemakerWave {
   speed: number;
 }
 
-interface Ripple {
-  x: number;
-  y: number;
-  radius: number;
-  maxRadius: number;
-  alpha: number;
-  speed: number;
-  color: string;
-}
-
 interface PlasmaParticle {
   x: number;
   y: number;
@@ -152,51 +142,11 @@ export default function BioNeuralCanvas() {
     let lastPacemakerTime = 0;
     const pacemakerPeriod = 857;
 
-    // Interactive Kinetic Synaptic Ripples
-    const ripples: Ripple[] = [];
-    const handlePointerDown = (e: MouseEvent | TouchEvent) => {
-      let cx = 0;
-      let cy = 0;
-      if ("clientX" in e) {
-        cx = (e as MouseEvent).clientX;
-        cy = (e as MouseEvent).clientY;
-      } else if ("touches" in e && (e as TouchEvent).touches.length > 0) {
-        cx = (e as TouchEvent).touches[0].clientX;
-        cy = (e as TouchEvent).touches[0].clientY;
-      }
-
-      if (cx > 0 && cy > 0) {
-        ripples.push({
-          x: cx,
-          y: cy,
-          radius: 4,
-          maxRadius: isMobile ? 220 : 340,
-          alpha: 0.55,
-          speed: 4.2,
-          color: Math.random() > 0.4 ? "#DC2626" : "#0284C7",
-        });
-
-        // Kinetic excitation to nearby nodes
-        nodes.forEach((n) => {
-          const dx = n.x - cx;
-          const dy = n.y - cy;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 260) {
-            n.glowIntensity = 1.0;
-            const pushForce = (1 - dist / 260) * 2.2;
-            n.vx += (dx / (dist || 1)) * pushForce;
-            n.vy += (dy / (dist || 1)) * pushForce;
-          }
-        });
-      }
-    };
-
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("mouseleave", handleMouseLeave);
     window.addEventListener("touchstart", handleTouchMove, { passive: true });
     window.addEventListener("touchmove", handleTouchMove, { passive: true });
     window.addEventListener("touchend", handleTouchEnd, { passive: true });
-    window.addEventListener("pointerdown", handlePointerDown);
 
     // Micro-Plasma Cellular Particles (delicate blood plasma stream)
     const plasmaParticles: PlasmaParticle[] = Array.from({ length: isMobile ? 14 : 26 }, () => ({
@@ -285,39 +235,7 @@ export default function BioNeuralCanvas() {
       }
 
       // -----------------------------------------------------------------------
-      // 2. Interactive Kinetic Click/Tap Synaptic Ripples
-      // -----------------------------------------------------------------------
-      for (let r = ripples.length - 1; r >= 0; r--) {
-        const rp = ripples[r];
-        rp.radius += rp.speed;
-        const progress = rp.radius / rp.maxRadius;
-        if (progress >= 1) {
-          ripples.splice(r, 1);
-          continue;
-        }
-
-        const curAlpha = rp.alpha * (1 - progress);
-        ctx.beginPath();
-        ctx.arc(rp.x, rp.y, Math.max(0.1, rp.radius), 0, Math.PI * 2);
-        ctx.strokeStyle =
-          rp.color === "#DC2626"
-            ? `rgba(220, 38, 38, ${curAlpha})`
-            : `rgba(2, 132, 199, ${curAlpha})`;
-        ctx.lineWidth = 1.6;
-        ctx.stroke();
-
-        // Secondary subtle inner echo
-        if (rp.radius > 25) {
-          ctx.beginPath();
-          ctx.arc(rp.x, rp.y, Math.max(0.1, rp.radius - 20), 0, Math.PI * 2);
-          ctx.strokeStyle = `rgba(220, 38, 38, ${curAlpha * 0.35})`;
-          ctx.lineWidth = 0.8;
-          ctx.stroke();
-        }
-      }
-
-      // -----------------------------------------------------------------------
-      // 3. Cellular Micro-Plasma Flow (laminar organic drifting particles)
+      // 2. Cellular Micro-Plasma Flow (laminar organic drifting particles)
       // -----------------------------------------------------------------------
       plasmaParticles.forEach((p) => {
         p.phase += 0.018;
@@ -527,7 +445,6 @@ export default function BioNeuralCanvas() {
       window.removeEventListener("touchstart", handleTouchMove);
       window.removeEventListener("touchmove", handleTouchMove);
       window.removeEventListener("touchend", handleTouchEnd);
-      window.removeEventListener("pointerdown", handlePointerDown);
     };
   }, []);
 
