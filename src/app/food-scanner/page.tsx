@@ -7,6 +7,7 @@ import ShapeGrid from "@/components/ui/ShapeGrid";
 import StarBorder from "@/components/ui/StarBorder";
 import BorderGlow from "@/components/ui/BorderGlow";
 import Shuffle from "@/components/ui/Shuffle";
+import AethrizLogo from "@/components/ui/AethrizLogo/AethrizLogo";
 import { Scan, Upload, Sparkles, CheckCircle2, ArrowRight, Apple, Flame, Utensils } from "lucide-react";
 
 export default function FoodScannerPage() {
@@ -82,10 +83,13 @@ export default function FoodScannerPage() {
       <main className="relative z-10 flex-grow pt-32 sm:pt-36 lg:pt-40 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-8">
         {/* Header */}
         <div className="backdrop-blur-2xl bg-white/80 p-6 sm:p-10 rounded-3xl border border-white/80 shadow-xl shadow-emerald-500/5 space-y-4">
-          <div className="max-w-3xl">
-            <span className="text-[10px] font-mono font-bold text-emerald-700 uppercase tracking-widest bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full">
-              STEP 1 &bull; OPTICAL FOOD & PRODUCT SCANNER
-            </span>
+          <div className="max-w-3xl space-y-2">
+            <div className="flex flex-wrap items-center gap-3">
+              <AethrizLogo variant="pill" size="xs" />
+              <span className="text-[10px] font-mono font-bold text-emerald-700 uppercase tracking-widest bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full">
+                STEP 1 &bull; OPTICAL FOOD & PRODUCT SCANNER
+              </span>
+            </div>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 tracking-tight mt-2">
               <Shuffle
                 text="Optical LiDAR Food & Macro Scanner"

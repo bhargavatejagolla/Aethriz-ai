@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import FloatingNavbar from "@/components/navigation/FloatingNavbar";
 import Footer from "@/components/navigation/Footer";
 import DnaHelixCanvas from "@/components/canvas/DnaHelixCanvas";
+import AethrizLogo from "@/components/ui/AethrizLogo/AethrizLogo";
 import { Users, ShieldCheck, FileCheck, CheckCircle2, Upload, AlertCircle, Send } from "lucide-react";
 
 export default function JoinTeamPage() {
@@ -32,7 +33,8 @@ export default function JoinTeamPage() {
 
       <main className="relative z-10 flex-grow pt-32 sm:pt-36 lg:pt-40 pb-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-8">
         <div className="glass-panel p-6 sm:p-10 rounded-3xl border border-red-100 shadow-xl space-y-6">
-          <div className="text-center max-w-2xl mx-auto space-y-2">
+          <div className="text-center max-w-2xl mx-auto space-y-3 flex flex-col items-center">
+            <AethrizLogo variant="full" size="sm" />
             <span className="text-[10px] font-mono font-bold text-red-600 uppercase tracking-widest bg-red-50 border border-red-200 px-2.5 py-1 rounded-full">
               STEP 1 &bull; JOIN THE MEDICAL FACULTY
             </span>

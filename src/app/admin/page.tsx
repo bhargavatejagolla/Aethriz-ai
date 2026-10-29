@@ -5,6 +5,7 @@ import Link from "next/link";
 import FloatingNavbar from "@/components/navigation/FloatingNavbar";
 import Footer from "@/components/navigation/Footer";
 import BioNeuralCanvas from "@/components/landing/BioNeuralCanvas";
+import AethrizLogo from "@/components/ui/AethrizLogo/AethrizLogo";
 import { useAuth } from "@/context/AuthContext";
 import { 
   ShieldAlert, 
@@ -107,9 +108,12 @@ export default function AdminPage() {
         {/* Header */}
         <div className="bg-white rounded-3xl p-6 sm:p-10 border border-red-100 shadow-xl shadow-red-500/5 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="space-y-2">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-semibold">
-              <ShieldAlert className="w-3.5 h-3.5" />
-              AETHRIZ Enterprise Cyber-Governance Deck &bull; Role: SecOps Admin
+            <div className="flex flex-wrap items-center gap-3">
+              <AethrizLogo variant="pill" size="xs" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-semibold">
+                <ShieldAlert className="w-3.5 h-3.5" />
+                Enterprise Cyber-Governance Deck &bull; Role: SecOps Admin
+              </div>
             </div>
             <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
               Governance Control: <span className="bg-gradient-to-r from-red-600 to-rose-600 bg-clip-text text-transparent">{user?.fullName || "SecOps Administrator"}</span>

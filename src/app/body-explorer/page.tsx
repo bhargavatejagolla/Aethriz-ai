@@ -7,6 +7,7 @@ import Footer from "@/components/navigation/Footer";
 import ShapeGrid from "@/components/ui/ShapeGrid";
 import Shuffle from "@/components/ui/Shuffle";
 import RubberSegment from "@/components/ui/RubberSegment";
+import AethrizLogo from "@/components/ui/AethrizLogo/AethrizLogo";
 import { 
   Heart, 
   Activity, 
@@ -76,7 +77,8 @@ export default function BodyExplorerPage() {
         <div className="backdrop-blur-2xl bg-white/75 p-6 sm:p-10 rounded-3xl border border-white/80 shadow-xl shadow-red-500/5 space-y-4">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="max-w-3xl space-y-2">
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-3">
+                <AethrizLogo variant="pill" size="xs" />
                 <span className="text-[10px] font-mono font-bold text-red-600 uppercase tracking-widest bg-red-50 border border-red-200 px-3 py-1 rounded-full shadow-xs">
                   STEP 1 CLINICAL MODULE &bull; 3D HUMAN BODY EXPLORER
                 </span>

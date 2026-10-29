@@ -155,7 +155,7 @@ export default function BioNeuralCanvas() {
       // 1. Interactive Mouse Beacon Aura & Direct Neural Synaptic Links
       // -----------------------------------------------------------------------
       if (mouse.active && mouse.x > 0 && mouse.y > 0) {
-        // Soft radial bio-field around cursor
+        // Delicate, non-intrusive radial bio-field around cursor
         const auraGrad = ctx.createRadialGradient(
           mouse.x,
           mouse.y,
@@ -164,24 +164,14 @@ export default function BioNeuralCanvas() {
           mouse.y,
           mouseRadius
         );
-        auraGrad.addColorStop(0, "rgba(220, 38, 38, 0.16)");
-        auraGrad.addColorStop(0.4, "rgba(220, 38, 38, 0.06)");
-        auraGrad.addColorStop(1, "rgba(220, 38, 38, 0)");
+        auraGrad.addColorStop(0, "rgba(210, 1, 23, 0.08)");
+        auraGrad.addColorStop(0.5, "rgba(210, 1, 23, 0.025)");
+        auraGrad.addColorStop(1, "rgba(210, 1, 23, 0)");
 
         ctx.beginPath();
         ctx.arc(mouse.x, mouse.y, mouseRadius, 0, Math.PI * 2);
         ctx.fillStyle = auraGrad;
         ctx.fill();
-
-        // Pulsing cursor nucleus
-        const cursorPulse = Math.sin(now * 0.006) * 1.2 + 3.2;
-        ctx.beginPath();
-        ctx.arc(mouse.x, mouse.y, Math.max(0.1, cursorPulse), 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(220, 38, 38, 0.85)";
-        ctx.shadowColor = "#DC2626";
-        ctx.shadowBlur = 12;
-        ctx.fill();
-        ctx.shadowBlur = 0;
       }
 
       // -----------------------------------------------------------------------

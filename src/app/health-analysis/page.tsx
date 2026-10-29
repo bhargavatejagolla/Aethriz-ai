@@ -7,6 +7,7 @@ import Footer from "@/components/navigation/Footer";
 import DnaHelixCanvas from "@/components/canvas/DnaHelixCanvas";
 import Shuffle from "@/components/ui/Shuffle";
 import StarBorder from "@/components/ui/StarBorder";
+import AethrizLogo from "@/components/ui/AethrizLogo/AethrizLogo";
 import { Activity, Sparkles, AlertCircle, CheckCircle2, ArrowRight, Heart, RefreshCw } from "lucide-react";
 
 export default function HealthAnalysisPage() {
@@ -42,10 +43,13 @@ export default function HealthAnalysisPage() {
       <main className="relative z-10 flex-grow pt-32 sm:pt-36 lg:pt-40 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-8">
         {/* Header */}
         <div className="glass-panel p-6 sm:p-10 rounded-3xl border border-red-100 shadow-xl space-y-4">
-          <div className="max-w-3xl">
-            <span className="text-[10px] font-mono font-bold text-red-600 uppercase tracking-widest bg-red-50 border border-red-200 px-2.5 py-1 rounded-full">
-              STEP 1 &bull; AI HEALTH & LIFESTYLE ANALYSIS
-            </span>
+          <div className="max-w-3xl space-y-2">
+            <div className="flex flex-wrap items-center gap-3">
+              <AethrizLogo variant="pill" size="xs" />
+              <span className="text-[10px] font-mono font-bold text-red-600 uppercase tracking-widest bg-red-50 border border-red-200 px-2.5 py-1 rounded-full">
+                STEP 1 &bull; AI HEALTH & LIFESTYLE ANALYSIS
+              </span>
+            </div>
             <h1 className="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight mt-2">
               <Shuffle
                 text="Multi-Parametric AI Biomarker Profiler"

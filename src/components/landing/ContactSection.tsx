@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { Mail, Phone, MapPin, Send, CheckCircle2, Clock } from "lucide-react";
+import AethrizLogo from "@/components/ui/AethrizLogo/AethrizLogo";
 
 export default function ContactSection() {
   const [submitted, setSubmitted] = useState(false);
@@ -31,10 +32,13 @@ export default function ContactSection() {
   return (
     <section id="contact-section" className="py-12 relative z-10 scroll-mt-24">
       <div className="glass-panel p-6 sm:p-10 rounded-3xl border border-red-100 shadow-xl space-y-8">
-        <div className="max-w-3xl">
-          <span className="text-[10px] font-mono font-bold text-red-600 uppercase tracking-widest bg-red-50 border border-red-200 px-2.5 py-1 rounded-full">
-            HEADQUARTERS & CLINICAL SUPPORT
-          </span>
+        <div className="max-w-3xl space-y-3">
+          <div className="flex flex-wrap items-center gap-3">
+            <AethrizLogo variant="full" size="sm" />
+            <span className="text-[10px] font-mono font-bold text-red-600 uppercase tracking-widest bg-red-50 border border-red-200 px-2.5 py-1 rounded-full">
+              HEADQUARTERS & CLINICAL SUPPORT
+            </span>
+          </div>
           <h2 className="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight mt-2">
             Contact AETHRIZ Healthcare & Advanced Research
           </h2>

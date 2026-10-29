@@ -8,6 +8,7 @@ import Footer from "@/components/navigation/Footer";
 import CardiacPulseCanvas from "@/components/canvas/CardiacPulseCanvas";
 import HoldButton from "@/components/ui/HoldButton";
 import FlyingButton from "@/components/ui/FlyingButton";
+import AethrizLogo from "@/components/ui/AethrizLogo/AethrizLogo";
 import { 
   Calendar as CalendarIcon, 
   Clock, 
@@ -168,9 +169,12 @@ function BookingContent() {
         {/* Step 7 Header */}
         <div className="bg-white rounded-3xl p-8 sm:p-10 border border-red-100 shadow-xl shadow-red-500/5 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="space-y-3 max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-200 text-red-600 text-xs font-semibold uppercase tracking-wider">
-              <CalendarIcon className="w-3.5 h-3.5" />
-              Step 7: Doctor Consultation Booking Workflow
+            <div className="flex flex-wrap items-center gap-3">
+              <AethrizLogo variant="pill" size="xs" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-200 text-red-600 text-xs font-semibold uppercase tracking-wider">
+                <CalendarIcon className="w-3.5 h-3.5" />
+                Doctor Consultation Booking
+              </div>
             </div>
             <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
               Book a Specialized <br />

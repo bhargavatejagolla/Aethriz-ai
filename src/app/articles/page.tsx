@@ -10,6 +10,7 @@ import GlareHover from "@/components/ui/GlareHover";
 import GooeyNav from "@/components/ui/GooeyNav";
 import TiltedCard, { TiltedCardLayer } from "@/components/ui/TiltedCard";
 import PulseHeart from "@/components/ui/PulseHeart";
+import AethrizLogo from "@/components/ui/AethrizLogo/AethrizLogo";
 import { 
   BookOpen, 
   Heart, 
@@ -202,9 +203,12 @@ export default function ArticlesPage() {
           
           <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
             <div className="max-w-3xl space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-200 text-red-600 text-xs font-semibold uppercase tracking-wider">
-                <BookOpen className="w-3.5 h-3.5" />
-                Step 6: Clinical & Patient Experience Sharing
+              <div className="flex flex-wrap items-center gap-3">
+                <AethrizLogo variant="pill" size="xs" />
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-200 text-red-600 text-xs font-semibold uppercase tracking-wider">
+                  <BookOpen className="w-3.5 h-3.5" />
+                  Clinical & Patient Experience Sharing
+                </div>
               </div>
               <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
                 Authentic Healthcare Journeys & <br />

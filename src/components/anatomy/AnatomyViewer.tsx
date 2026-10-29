@@ -35,6 +35,7 @@ import {
   type SystemId, 
   type View 
 } from './anatomy';
+import AethrizLogo from '@/components/ui/AethrizLogo/AethrizLogo';
 
 // Dynamic import with ssr: false so WebGL/Three.js never runs on the server during Vercel build!
 const AnatomyScene = dynamic(() => import('./AnatomyScene'), { ssr: false });
@@ -178,11 +179,12 @@ export default function AnatomyViewer() {
 
       {/* Top Clinical HUD Header */}
       <div className="relative z-20 flex flex-wrap items-center justify-between p-4 sm:p-6 bg-gradient-to-b from-black/80 via-black/40 to-transparent pointer-events-auto gap-4">
-        <div className="space-y-1">
-          <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-red-600 animate-ping" />
-            <span className="text-[10px] font-mono font-bold text-red-500 uppercase tracking-widest bg-red-950/80 border border-red-800/80 px-2.5 py-0.5 rounded-full">
-              3D CLINICAL ANATOMY ENGINE &bull; BODYPARTS3D MALE REFERENCE
+        <div className="space-y-1.5">
+          <div className="flex flex-wrap items-center gap-2.5">
+            <AethrizLogo variant="wordmark" size="xs" theme="dark" showSubtitle={false} />
+            <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-ping" />
+            <span className="text-[10px] font-mono font-bold text-red-400 uppercase tracking-widest bg-red-950/80 border border-red-800/80 px-2 py-0.5 rounded-full">
+              3D CLINICAL ANATOMY &bull; BODYPARTS3D ATLAS
             </span>
           </div>
           <h2 className="text-xl sm:text-2xl font-black text-white font-mono tracking-tight flex items-center gap-2">

@@ -13,7 +13,7 @@ export default function Footer() {
           {/* Column 1 & 2: Corporate Identity & Address */}
           <div className="lg:col-span-2 space-y-4">
             {/* Official Corporate Logo */}
-            <AethrizLogo href="/" size="sm" variant="full" theme="dark" />
+            <AethrizLogo href="/" size="md" variant="full" theme="dark" />
 
             <p className="text-gray-400 text-xs leading-relaxed max-w-sm">
               The Zenith of Bio-Algorithmic Health. Clinical AI decision-support systems, 

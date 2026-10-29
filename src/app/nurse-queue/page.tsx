@@ -5,6 +5,7 @@ import Link from "next/link";
 import FloatingNavbar from "@/components/navigation/FloatingNavbar";
 import Footer from "@/components/navigation/Footer";
 import CardiacPulseCanvas from "@/components/canvas/CardiacPulseCanvas";
+import AethrizLogo from "@/components/ui/AethrizLogo/AethrizLogo";
 import { useAuth } from "@/context/AuthContext";
 import { 
   Heart, 
@@ -102,9 +103,12 @@ export default function NurseQueuePage() {
         {/* Header */}
         <div className="bg-white rounded-3xl p-6 sm:p-10 border border-red-100 shadow-xl shadow-red-500/5 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="space-y-2">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-semibold">
-              <Activity className="w-3.5 h-3.5" />
-              Nurse Station Triage & In-Patient Telemetry &bull; Role: Nurse
+            <div className="flex flex-wrap items-center gap-3">
+              <AethrizLogo variant="pill" size="xs" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-semibold">
+                <Activity className="w-3.5 h-3.5" />
+                Nurse Station Triage & In-Patient Telemetry &bull; Role: Nurse
+              </div>
             </div>
             <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
               Triage HUD: <span className="bg-gradient-to-r from-red-600 to-rose-600 bg-clip-text text-transparent">{user?.fullName || "Ananya Sharma, RN, BSN"}</span>

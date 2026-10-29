@@ -11,7 +11,6 @@ import ContactSection from "@/components/landing/ContactSection";
 import TechText from "@/components/ui/TechText";
 import StrokeText from "@/components/ui/StrokeText";
 import Shuffle from "@/components/ui/Shuffle";
-import SplashCursor from "@/components/ui/SplashCursor";
 import ElectricBorder from "@/components/ui/ElectricBorder";
 import StarBorder from "@/components/ui/StarBorder";
 import GlareHover from "@/components/ui/GlareHover";
@@ -139,17 +138,6 @@ export default function HomePage() {
       {/* 60 FPS Interactive Bio-Neural Canvas */}
       <BioNeuralCanvas />
 
-      {/* Interactive Fluid Dynamics Splash Cursor */}
-      <SplashCursor
-        colors={['#DC2626', '#E11D48', '#FB7185', '#F43F5E']}
-        rainbow={false}
-        intensity={0.4}
-        swirl={2.4}
-        trail={1.1}
-        theme="light"
-        zIndex={20}
-      />
-
       {/* Floating Glassmorphism Navbar */}
       <FloatingNavbar />
 
@@ -166,7 +154,7 @@ export default function HomePage() {
             <div className="lg:w-1/2 space-y-6 text-left">
               {/* Official Brand Identity & Multilingual Badge Bar */}
               <div className="flex flex-wrap items-center gap-3">
-                <AethrizLogo variant="pill" size="xs" />
+                <AethrizLogo variant="pill" size="sm" />
                 <div className="inline-flex items-center gap-2 bg-white/95 border border-red-200/80 px-3.5 py-1.5 rounded-full shadow-xs">
                   <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
                   <span className="text-[11px] font-mono font-bold text-gray-800">
