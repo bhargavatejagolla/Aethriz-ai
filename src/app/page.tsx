@@ -6,6 +6,7 @@ import Image from "next/image";
 
 export default function LandingPage() {
   const [reveal, setReveal] = useState<number>(50);
+  const [activeStep, setActiveStep] = useState<number>(4);
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
   const [formData, setFormData] = useState({
@@ -931,11 +932,23 @@ export default function LandingPage() {
               className="ae-hot"
               style={{ left: "45.8%", top: "38.5%", animationDelay: ".8s" }}
             />
+          </div>
 
-            {/* Scanning Ring */}
+          {/* Elliptical 3D Laser Scanning Ring - Level horizontal ellipse moving from legs to head */}
+          <div
+            className="ae-scanring absolute left-1/2 top-[55px] w-[310px] h-[68px] -ml-[155px] pointer-events-none z-20 flex items-center justify-center"
+          >
             <div
-              className="ae-scanring absolute -left-12 -right-12 top-0 h-11 rounded-full border-2 border-[rgba(227,32,43,0.8)] shadow-[0_0_24px_rgba(227,32,43,0.5),inset_0_0_20px_rgba(227,32,43,0.25)]"
-            />
+              className="w-full h-full rounded-[50%] border-2 border-[rgba(227,32,43,0.85)] shadow-[0_0_26px_rgba(227,32,43,0.65),inset_0_0_20px_rgba(227,32,43,0.35)] flex items-center justify-center"
+              style={{
+                background:
+                  "radial-gradient(ellipse at center, rgba(227,32,43,0.18) 0%, rgba(227,32,43,0.05) 55%, transparent 72%)",
+              }}
+            >
+              <div
+                className="w-[96%] h-[92%] rounded-[50%] border border-white/70 shadow-[0_0_8px_rgba(255,255,255,0.7)]"
+              />
+            </div>
           </div>
 
           {/* Floating Spheres Accents */}
@@ -2542,55 +2555,43 @@ export default function LandingPage() {
         </div>
 
         <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-          {/* Step 01: Scan */}
-          <div className="ae-lift bg-white rounded-[28px] p-7 min-h-[320px] flex flex-col justify-between shadow-xs">
-            <div className="flex justify-between items-start">
-              <div
-                aria-hidden="true"
-                className="relative w-15 h-15 rounded-[18px] bg-gradient-to-br from-white to-[#E9EDF2] shadow-[0_12px_24px_rgba(29,31,34,0.08),inset_0_1px_0_#FFFFFF,inset_0_-3px_6px_rgba(29,31,34,0.05)] flex items-center justify-center overflow-hidden"
-              >
-                <svg
-                  width="28"
-                  height="28"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#1D1F22"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
-                  <path d="M14 3v5h5" />
-                </svg>
-                <span
-                  className="ae-scan absolute left-3 right-3 top-[29px] h-0.5 rounded-full bg-[#E3202B] shadow-[0_0_8px_rgba(227,32,43,0.7)]"
-                />
-              </div>
-              <span className="font-mono text-[13px] text-[#C8161F] font-bold">
-                01
-              </span>
-            </div>
-            <div>
-              <h3
-                className="m-0 mb-2.5 font-normal text-2xl tracking-tight text-[#1D1F22]"
-                style={{ fontFamily: "'Inter Tight', sans-serif" }}
-              >
-                Scan
-              </h3>
-              <p className="m-0 text-[15px] text-[#545B61]">
-                Upload or scan your health reports. We structure them so AI can
-                understand.
-              </p>
-            </div>
-          </div>
-
-          {/* Step 02: Analyze */}
-          <div className="ae-lift bg-white rounded-[28px] p-7 min-h-[320px] flex flex-col justify-between shadow-xs">
-            <div className="flex justify-between items-start">
-              <div
-                aria-hidden="true"
-                className="w-15 h-15 rounded-[18px] bg-gradient-to-br from-white to-[#E9EDF2] shadow-[0_12px_24px_rgba(29,31,34,0.08),inset_0_1px_0_#FFFFFF,inset_0_-3px_6px_rgba(29,31,34,0.05)] flex items-center justify-center"
-              >
+          {[
+            {
+              num: "01",
+              title: "Scan",
+              desc: "Upload or scan your health reports. We structure them so AI can understand.",
+              renderIcon: (isActive: boolean) => (
+                <div className="relative flex items-center justify-center">
+                  <svg
+                    width="28"
+                    height="28"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke={isActive ? "#FFFFFF" : "#1D1F22"}
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+                    <path d="M14 3v5h5" />
+                  </svg>
+                  <span
+                    className="ae-scan absolute left-0 right-0 top-[13px] h-0.5 rounded-full"
+                    style={{
+                      backgroundColor: isActive ? "#FF6B6F" : "#E3202B",
+                      boxShadow: isActive
+                        ? "0 0 10px rgba(255,107,111,0.9)"
+                        : "0 0 8px rgba(227,32,43,0.7)",
+                    }}
+                  />
+                </div>
+              ),
+            },
+            {
+              num: "02",
+              title: "Analyze",
+              desc: "Deep-learning models process parameters, patterns, lifestyle and diet.",
+              renderIcon: (isActive: boolean) => (
                 <svg
                   width="28"
                   height="28"
@@ -2600,39 +2601,34 @@ export default function LandingPage() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 >
-                  <rect x="6" y="6" width="12" height="12" rx="2" stroke="#1D1F22" />
-                  <rect x="9.5" y="9.5" width="5" height="5" rx="1" stroke="#E3202B" />
+                  <rect
+                    x="6"
+                    y="6"
+                    width="12"
+                    height="12"
+                    rx="2"
+                    stroke={isActive ? "#FFFFFF" : "#1D1F22"}
+                  />
+                  <rect
+                    x="9.5"
+                    y="9.5"
+                    width="5"
+                    height="5"
+                    rx="1"
+                    stroke={isActive ? "#FF6B6F" : "#E3202B"}
+                  />
                   <path
                     d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"
-                    stroke="#1D1F22"
+                    stroke={isActive ? "#FFFFFF" : "#1D1F22"}
                   />
                 </svg>
-              </div>
-              <span className="font-mono text-[13px] text-[#C8161F] font-bold">
-                02
-              </span>
-            </div>
-            <div>
-              <h3
-                className="m-0 mb-2.5 font-normal text-2xl tracking-tight text-[#1D1F22]"
-                style={{ fontFamily: "'Inter Tight', sans-serif" }}
-              >
-                Analyze
-              </h3>
-              <p className="m-0 text-[15px] text-[#545B61]">
-                Deep-learning models process parameters, patterns, lifestyle and
-                diet.
-              </p>
-            </div>
-          </div>
-
-          {/* Step 03: Interpret */}
-          <div className="ae-lift bg-white rounded-[28px] p-7 min-h-[320px] flex flex-col justify-between shadow-xs">
-            <div className="flex justify-between items-start">
-              <div
-                aria-hidden="true"
-                className="w-15 h-15 rounded-[18px] bg-gradient-to-br from-white to-[#E9EDF2] shadow-[0_12px_24px_rgba(29,31,34,0.08),inset_0_1px_0_#FFFFFF,inset_0_-3px_6px_rgba(29,31,34,0.05)] flex items-center justify-center"
-              >
+              ),
+            },
+            {
+              num: "03",
+              title: "Interpret",
+              desc: "Complex data becomes simple insight. No confusing medical jargon.",
+              renderIcon: (isActive: boolean) => (
                 <svg
                   width="28"
                   height="28"
@@ -2642,38 +2638,26 @@ export default function LandingPage() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 >
-                  <path d="M9 18h6M10 21h4" stroke="#1D1F22" />
+                  <path
+                    d="M9 18h6M10 21h4"
+                    stroke={isActive ? "#FFFFFF" : "#1D1F22"}
+                  />
                   <path
                     d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"
-                    stroke="#1D1F22"
+                    stroke={isActive ? "#FFFFFF" : "#1D1F22"}
                   />
-                  <path d="M12 7v3l2 1" stroke="#E3202B" />
+                  <path
+                    d="M12 7v3l2 1"
+                    stroke={isActive ? "#FF6B6F" : "#E3202B"}
+                  />
                 </svg>
-              </div>
-              <span className="font-mono text-[13px] text-[#C8161F] font-bold">
-                03
-              </span>
-            </div>
-            <div>
-              <h3
-                className="m-0 mb-2.5 font-normal text-2xl tracking-tight text-[#1D1F22]"
-                style={{ fontFamily: "'Inter Tight', sans-serif" }}
-              >
-                Interpret
-              </h3>
-              <p className="m-0 text-[15px] text-[#545B61]">
-                Complex data becomes simple insight. No confusing medical jargon.
-              </p>
-            </div>
-          </div>
-
-          {/* Step 04: Personalize */}
-          <div className="ae-lift bg-white rounded-[28px] p-7 min-h-[320px] flex flex-col justify-between shadow-xs">
-            <div className="flex justify-between items-start">
-              <div
-                aria-hidden="true"
-                className="w-15 h-15 rounded-[18px] bg-gradient-to-br from-white to-[#E9EDF2] shadow-[0_12px_24px_rgba(29,31,34,0.08),inset_0_1px_0_#FFFFFF,inset_0_-3px_6px_rgba(29,31,34,0.05)] flex items-center justify-center"
-              >
+              ),
+            },
+            {
+              num: "04",
+              title: "Personalize",
+              desc: "Recommendations for your profile, food habits, age and needs — not an average person.",
+              renderIcon: (isActive: boolean) => (
                 <svg
                   width="28"
                   height="28"
@@ -2685,46 +2669,34 @@ export default function LandingPage() {
                 >
                   <path
                     d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"
-                    stroke="#1D1F22"
+                    stroke={isActive ? "#FFFFFF" : "#1D1F22"}
                   />
-                  <circle cx="16" cy="6" r="2" stroke="#E3202B" />
-                  <circle cx="10" cy="12" r="2" stroke="#E3202B" />
-                  <circle cx="18" cy="18" r="2" stroke="#E3202B" />
+                  <circle
+                    cx="16"
+                    cy="6"
+                    r="2"
+                    stroke={isActive ? "#FF6B6F" : "#E3202B"}
+                  />
+                  <circle
+                    cx="10"
+                    cy="12"
+                    r="2"
+                    stroke={isActive ? "#FF6B6F" : "#E3202B"}
+                  />
+                  <circle
+                    cx="18"
+                    cy="18"
+                    r="2"
+                    stroke={isActive ? "#FF6B6F" : "#E3202B"}
+                  />
                 </svg>
-              </div>
-              <span className="font-mono text-[13px] text-[#C8161F] font-bold">
-                04
-              </span>
-            </div>
-            <div>
-              <h3
-                className="m-0 mb-2.5 font-normal text-2xl tracking-tight text-[#1D1F22]"
-                style={{ fontFamily: "'Inter Tight', sans-serif" }}
-              >
-                Personalize
-              </h3>
-              <p className="m-0 text-[15px] text-[#545B61]">
-                Recommendations for your profile, food habits, age and needs — not
-                an average person.
-              </p>
-            </div>
-          </div>
-
-          {/* Step 05: Guide (Obsidian Dark Card) */}
-          <div className="ae-lift relative overflow-hidden bg-[#1D1F22] text-white rounded-[28px] p-7 min-h-[320px] flex flex-col justify-between shadow-md">
-            <div
-              aria-hidden="true"
-              className="ae-glow absolute -right-15 -bottom-15 w-[220px] h-[220px] rounded-full"
-              style={{
-                background:
-                  "radial-gradient(circle, rgba(227,32,43,0.45), rgba(227,32,43,0) 65%)",
-              }}
-            />
-            <div className="relative flex justify-between items-start">
-              <div
-                aria-hidden="true"
-                className="w-15 h-15 rounded-[18px] bg-gradient-to-br from-[#3A3C42] to-[#1A1B1E] shadow-[0_12px_24px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.12)] flex items-center justify-center"
-              >
+              ),
+            },
+            {
+              num: "05",
+              title: "Guide",
+              desc: "Better everyday decisions on nutrition, lifestyle and preventive health.",
+              renderIcon: (isActive: boolean) => (
                 <svg
                   className="ae-spin"
                   width="28"
@@ -2735,27 +2707,83 @@ export default function LandingPage() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 >
-                  <circle cx="12" cy="12" r="9" stroke="#FFFFFF" />
-                  <path d="M15.5 8.5l-2 5-5 2 2-5z" stroke="#FF6B6F" />
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="9"
+                    stroke={isActive ? "#FFFFFF" : "#1D1F22"}
+                  />
+                  <path
+                    d="M15.5 8.5l-2 5-5 2 2-5z"
+                    stroke={isActive ? "#FF6B6F" : "#E3202B"}
+                  />
                 </svg>
-              </div>
-              <span className="font-mono text-[13px] text-[#FF6B6F] font-bold">
-                05
-              </span>
-            </div>
-            <div className="relative">
-              <h3
-                className="m-0 mb-2.5 font-normal text-2xl tracking-tight text-white"
-                style={{ fontFamily: "'Inter Tight', sans-serif" }}
+              ),
+            },
+          ].map((step, idx) => {
+            const isActive = activeStep === idx;
+            return (
+              <div
+                key={step.num}
+                onMouseEnter={() => setActiveStep(idx)}
+                className={`ae-lift relative overflow-hidden rounded-[28px] p-7 min-h-[320px] flex flex-col justify-between cursor-pointer transition-all duration-300 ${
+                  isActive
+                    ? "bg-[#1D1F22] text-white shadow-xl -translate-y-2 scale-[1.02]"
+                    : "bg-white text-[#1D1F22] shadow-xs hover:shadow-md hover:-translate-y-1"
+                }`}
               >
-                Guide
-              </h3>
-              <p className="m-0 text-[15px] text-[#C3C7CC]">
-                Better everyday decisions on nutrition, lifestyle and preventive
-                health.
-              </p>
-            </div>
-          </div>
+                {/* Ambient Red Glow on Active Card */}
+                {isActive && (
+                  <div
+                    aria-hidden="true"
+                    className="ae-glow absolute -right-12 -bottom-12 w-[220px] h-[220px] rounded-full pointer-events-none"
+                    style={{
+                      background:
+                        "radial-gradient(circle, rgba(227,32,43,0.45), rgba(227,32,43,0) 65%)",
+                    }}
+                  />
+                )}
+
+                <div className="relative flex justify-between items-start">
+                  <div
+                    aria-hidden="true"
+                    className={`w-15 h-15 rounded-[18px] flex items-center justify-center transition-all duration-300 ${
+                      isActive
+                        ? "bg-gradient-to-br from-[#3A3C42] to-[#1A1B1E] shadow-[0_12px_24px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.12)]"
+                        : "bg-gradient-to-br from-white to-[#E9EDF2] shadow-[0_12px_24px_rgba(29,31,34,0.08),inset_0_1px_0_#FFFFFF,inset_0_-3px_6px_rgba(29,31,34,0.05)]"
+                    }`}
+                  >
+                    {step.renderIcon(isActive)}
+                  </div>
+                  <span
+                    className={`font-mono text-[13px] font-bold transition-colors duration-300 ${
+                      isActive ? "text-[#FF6B6F]" : "text-[#C8161F]"
+                    }`}
+                  >
+                    {step.num}
+                  </span>
+                </div>
+
+                <div className="relative">
+                  <h3
+                    className={`m-0 mb-2.5 font-normal text-2xl tracking-tight transition-colors duration-300 ${
+                      isActive ? "text-white" : "text-[#1D1F22]"
+                    }`}
+                    style={{ fontFamily: "'Inter Tight', sans-serif" }}
+                  >
+                    {step.title}
+                  </h3>
+                  <p
+                    className={`m-0 text-[15px] leading-normal transition-colors duration-300 ${
+                      isActive ? "text-[#C3C7CC]" : "text-[#545B61]"
+                    }`}
+                  >
+                    {step.desc}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </section>
 

@@ -210,7 +210,11 @@
 @keyframes ae-in { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
 @keyframes ae-sway { 0%, 100% { transform: rotateY(-30deg); } 50% { transform: rotateY(30deg); } }
 @keyframes ae-sway2 { 0%, 100% { transform: rotateY(-16deg) translateY(0); } 50% { transform: rotateY(16deg) translateY(-8px); } }
-@keyframes ae-scanring { 0% { transform: translateY(0); opacity: 0; } 10% { opacity: 1; } 50% { transform: translateY(480px); opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(0); opacity: 0; } }
+@keyframes ae-scanring {
+  0% { transform: translateY(450px); opacity: 0.95; }
+  50% { transform: translateY(0px); opacity: 0.95; }
+  100% { transform: translateY(450px); opacity: 0.95; }
+}
 @keyframes ae-ripple { 0% { transform: scale(1); opacity: 0.9; } 100% { transform: scale(3.2); opacity: 0; } }
 @keyframes ae-plat { 0% { transform: scale(0.45); opacity: 0.9; } 100% { transform: scale(1.18); opacity: 0; } }
 @keyframes ae-beat { 0%, 100% { transform: scale(1); } 12% { transform: scale(1.22); } 24% { transform: scale(0.96); } 36% { transform: scale(1.12); } }
