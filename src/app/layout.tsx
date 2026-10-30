@@ -32,6 +32,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="h-full scroll-smooth">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body className="min-h-full flex flex-col font-sans bg-[#FDF4F5] text-[#111318] antialiased selection:bg-red-600 selection:text-white">
         <AuthProvider>
           {children}
