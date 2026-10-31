@@ -118,7 +118,7 @@ export default function LandingPage() {
                   gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
                 }}
               >
-                <Link href="#services">
+                <Link href="/health-analysis">
                   <span className="ae-mi">
                     <svg
                       width="18"
@@ -140,7 +140,7 @@ export default function LandingPage() {
                     </span>
                   </span>
                 </Link>
-                <Link href="#how">
+                <Link href="/food-scanner">
                   <span className="ae-mi">
                     <svg
                       width="18"
@@ -162,7 +162,7 @@ export default function LandingPage() {
                     </span>
                   </span>
                 </Link>
-                <Link href="#how">
+                <Link href="/body-explorer">
                   <span className="ae-mi">
                     <svg
                       width="18"
@@ -233,11 +233,11 @@ export default function LandingPage() {
               <div
                 className="ae-menu"
                 style={{
-                  width: "280px",
+                  width: "300px",
                   gridTemplateColumns: "1fr",
                 }}
               >
-                <Link href="#community">
+                <Link href="/doctors">
                   <span className="ae-mi">
                     <svg
                       width="18"
@@ -261,7 +261,7 @@ export default function LandingPage() {
                     </span>
                   </span>
                 </Link>
-                <Link href="#languages">
+                <Link href="/booking">
                   <span className="ae-mi">
                     <svg
                       width="18"
@@ -273,15 +273,14 @@ export default function LandingPage() {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     >
-                      <circle cx="12" cy="12" r="10" />
-                      <line x1="2" y1="12" x2="22" y2="12" />
-                      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                      <rect x="3" y="5" width="18" height="16" rx="3" />
+                      <path d="M8 3v4M16 3v4M3 10h18M9 15l2 2 4-4" />
                     </svg>
                   </span>
                   <span>
-                    <span className="ae-mt">22+ Languages</span>
+                    <span className="ae-mt">Bookings</span>
                     <span className="ae-md">
-                      Care in your mother tongue
+                      Schedule tests and appointments
                     </span>
                   </span>
                 </Link>
@@ -313,10 +312,33 @@ export default function LandingPage() {
               <div
                 className="ae-menu"
                 style={{
-                  width: "280px",
-                  gridTemplateColumns: "1fr",
+                  width: "460px",
+                  gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
                 }}
               >
+                <Link href="/articles">
+                  <span className="ae-mi">
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                    </svg>
+                  </span>
+                  <span>
+                    <span className="ae-mt">Articles & Stories</span>
+                    <span className="ae-md">
+                      Real clinical recovery narratives
+                    </span>
+                  </span>
+                </Link>
                 <Link href="#mission">
                   <span className="ae-mi">
                     <svg
@@ -338,7 +360,29 @@ export default function LandingPage() {
                     <span className="ae-md">Preventive health for 1.4 billion people</span>
                   </span>
                 </Link>
-                <Link href="#contact">
+                <Link href="/join-team">
+                  <span className="ae-mi">
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                      <circle cx="9" cy="7" r="4" />
+                      <path d="M19 8v6M22 11h-6" />
+                    </svg>
+                  </span>
+                  <span>
+                    <span className="ae-mt">Careers</span>
+                    <span className="ae-md">Join our clinical AI fellowship</span>
+                  </span>
+                </Link>
+                <Link href="/contact">
                   <span className="ae-mi">
                     <svg
                       width="18"
@@ -366,7 +410,7 @@ export default function LandingPage() {
           {/* Right Actions */}
           <div className="flex items-center gap-2.5">
             <Link
-              href="#contact"
+              href="/contact"
               className="ae-btn inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium text-[#1D1F22] border border-black/10 shadow-[inset_0_1px_0_#FFF,0_2px_4px_rgba(29,31,34,0.04)] hover:bg-black/5 transition-all"
             >
               <svg
@@ -387,7 +431,7 @@ export default function LandingPage() {
             </Link>
 
             <Link
-              href="#register"
+              href="/login"
               className="ae-btn-dark inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-sm font-medium text-white shadow-[0_8px_20px_rgba(14,15,17,0.25),inset_0_1px_0_rgba(255,255,255,0.2)]"
               style={{
                 background: "linear-gradient(180deg, #32363A 0%, #1D1F22 100%)",
@@ -405,7 +449,7 @@ export default function LandingPage() {
                 strokeLinecap="round"
                 strokeLinejoin="round"
               >
-                <path d="M7 17L17 7M8 7h9v9" />
+                <path d="M7 17L17 7M17 7H7M17 7V17" />
               </svg>
             </Link>
 
@@ -449,12 +493,47 @@ export default function LandingPage() {
         {mobileMenuOpen && (
           <div className="md:hidden mt-3 max-w-[1180px] mx-auto p-4 rounded-3xl bg-white/95 backdrop-blur-xl border border-white/80 shadow-2xl flex flex-col gap-2 text-sm animate-in fade-in duration-200">
             <Link
-              href="#services"
+              href="/health-analysis"
               onClick={() => setMobileMenuOpen(false)}
               className="p-3 bg-slate-50/80 rounded-2xl font-medium text-[#1D1F22] flex items-center justify-between"
             >
-              <span>Platform</span>
+              <span>AI Health Analysis</span>
               <span className="text-xs text-[#C8161F] font-mono">BIO-AI</span>
+            </Link>
+            <Link
+              href="/food-scanner"
+              onClick={() => setMobileMenuOpen(false)}
+              className="p-3 bg-slate-50/80 rounded-2xl font-medium text-[#1D1F22]"
+            >
+              Food Scanner
+            </Link>
+            <Link
+              href="/body-explorer"
+              onClick={() => setMobileMenuOpen(false)}
+              className="p-3 bg-slate-50/80 rounded-2xl font-medium text-[#1D1F22]"
+            >
+              3D Anatomy Explorer
+            </Link>
+            <Link
+              href="/doctors"
+              onClick={() => setMobileMenuOpen(false)}
+              className="p-3 bg-slate-50/80 rounded-2xl font-medium text-[#1D1F22]"
+            >
+              Verified Doctors
+            </Link>
+            <Link
+              href="/booking"
+              onClick={() => setMobileMenuOpen(false)}
+              className="p-3 bg-slate-50/80 rounded-2xl font-medium text-[#1D1F22]"
+            >
+              Book Consultation
+            </Link>
+            <Link
+              href="/articles"
+              onClick={() => setMobileMenuOpen(false)}
+              className="p-3 bg-slate-50/80 rounded-2xl font-medium text-[#1D1F22]"
+            >
+              Articles & Clinical Stories
             </Link>
             <Link
               href="#how"
@@ -471,14 +550,7 @@ export default function LandingPage() {
               Mission
             </Link>
             <Link
-              href="#faq"
-              onClick={() => setMobileMenuOpen(false)}
-              className="p-3 bg-slate-50/80 rounded-2xl font-medium text-[#1D1F22]"
-            >
-              FAQ
-            </Link>
-            <Link
-              href="#contact"
+              href="/contact"
               onClick={() => setMobileMenuOpen(false)}
               className="p-3 bg-slate-50/80 rounded-2xl font-medium text-[#1D1F22] flex items-center justify-between"
             >
@@ -486,6 +558,16 @@ export default function LandingPage() {
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
                 <rect x="3" y="5" width="18" height="14" rx="3" />
                 <path d="M3.5 7l8.5 6 8.5-6" />
+              </svg>
+            </Link>
+            <Link
+              href="/login"
+              onClick={() => setMobileMenuOpen(false)}
+              className="p-3 bg-[#1D1F22] text-white rounded-2xl font-medium flex items-center justify-between mt-1 shadow-sm"
+            >
+              <span>Sign in</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                <path d="M7 17L17 7M17 7H7M17 7V17" />
               </svg>
             </Link>
           </div>
@@ -558,7 +640,7 @@ export default function LandingPage() {
             </Link>
 
             <Link
-              href="#services"
+              href="#how"
               className="ae-btn inline-flex items-center gap-2.5 min-h-[52px] pl-2.5 pr-6 rounded-full bg-white text-[#1D1F22] text-base shadow-xs"
             >
               <span className="w-[34px] h-[34px] rounded-full bg-[#1D1F22] text-white flex items-center justify-center">
